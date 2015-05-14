@@ -16,12 +16,12 @@ public class ToneButton : MonoBehaviour {
 	}
 	
 	void OnGUI() {
-		MakeNoteButtonAndHandleClick ("A4", 100, 440);
-		MakeNoteButtonAndHandleClick ("A5", 200, 880);
+		MakeNoteButtonAndHandleClick (new Rect (100, 100, 500, 180), "A4", 440);
+		MakeNoteButtonAndHandleClick (new Rect (100, 300, 500, 180), "A5", 880);
 	}
 	
-	private void MakeNoteButtonAndHandleClick( string noteName, float top, float noteFreq ) {
-		bool button = GUI.RepeatButton (new Rect (100, top, 60, 60), noteName);
+	private void MakeNoteButtonAndHandleClick( Rect buttonRect, string noteName, float noteFreq ) {
+		bool button = GUI.RepeatButton (buttonRect, noteName);
 		
 		if (button) {
 			// prevent the note from triggering multiple times
