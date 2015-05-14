@@ -1,32 +1,40 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ToneButton : MonoBehaviour {
 
+public class ToneButton : MonoBehaviour {
+	
 	GameObject gameObj;
 	Tone synth;
 	
-	private string lastTooltip = " ";
+	private string notePressed = " ";
 	
 	// Use this for initialization
 	void Start () {
 		GameObject gameObj = GameObject.Find("Main Camera");
 		synth = (Tone) gameObj.GetComponent(typeof(Tone));
 	}
-
+	
 	void OnGUI() {
-		GUI.Button(new Rect(100, 100, 60, 60), new GUIContent("A4", "440"));
-
-		GUI.Button(new Rect(100, 200, 60, 60), new GUIContent("A5", "880"));
-
-		//mouse events
-		if (Event.current.type == EventType.Repaint && GUI.tooltip != lastTooltip) {
-
-			if (GUI.tooltip != ""){
-				synth.TriggerNote(float.Parse(GUI.tooltip.ToString()));
+		MakeNoteButtonAndHandleClick ("A4", 100, 440);
+		MakeNoteButtonAndHandleClick ("A5", 200, 880);
+	}
+	
+	private void MakeNoteButtonAndHandleClick( string noteName, float top, float noteFreq ) {
+		bool button = GUI.RepeatButton (new Rect (100, top, 60, 60), noteName);
+		
+		if (button) {
+			// prevent the note from triggering multiple times
+			if (notePressed != noteName) {
+				notePressed = noteName;
+				synth.TriggerNote (noteFreq);
+			} 
+		} else {
+			if ( Event.current.type == EventType.Repaint && 
+			    notePressed == noteName) 
+			{
+				notePressed = " ";
 			}
-
-			lastTooltip = GUI.tooltip;
 		}
 	}
 }
