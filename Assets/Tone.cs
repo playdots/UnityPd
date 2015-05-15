@@ -16,14 +16,16 @@ public class Tone : MonoBehaviour {
 	 */
 	[Range(0.0f,1.0f)]
 	public float gain = 0.5f;
+	
+	public int polyphony = 32;
 
-	public OscillatorType type = OscillatorType.Sine;
+	public OscillatorType type;
 
-	private float phase = 0.0f;
+	/**
+	 * 
+	 */
 	private static int sampleRate = 44100;
 
-	public int polyphony = 8;
-	
 	private SynthVoice[] voices;
 
 	private Boolean isInitialized = false;
@@ -37,6 +39,18 @@ public class Tone : MonoBehaviour {
 			voices[i] = new SynthVoice ();
 		}
 		isInitialized = true;
+	}
+
+	/*
+	 * hack which allows the oscillator type to be set from the inspector
+	 * remove for production
+	 */
+	void Update(){
+		if (isInitialized) {
+			if (voices[0].GetOscType() != type){
+				SetOscType(type);
+			}
+		}
 	}
 	
 	void OnAudioFilterRead(float[] data, int channels){
@@ -73,12 +87,17 @@ public class Tone : MonoBehaviour {
 		for (int i = 0; i < voices.Length; i++) {
 			if (voices[i].IsSilent()){
 				voices[i].TriggerNote (freq);
-				Debug.Log(i);
 				return;
 			}
 		}
 	}
 
+	public void SetOscType(OscillatorType type){
+		for (var i = 0; i < voices.Length; i++){
+			voices[i].SetOscType(type);
+		}
+	}
+	
 	/**
 	 * A single voice of the synth
 	 * 
@@ -110,6 +129,14 @@ public class Tone : MonoBehaviour {
 		public bool IsSilent(){
 			return env.OnStandby ();
 		}
+
+		public OscillatorType GetOscType(){
+			return this.osc.type;
+		}
+
+		public void SetOscType(OscillatorType type){
+			this.osc.type = type;
+		}
 	}
 
 	/**
@@ -124,22 +151,41 @@ public class Tone : MonoBehaviour {
 		public float frequency = 440.0f;
 
 		public void OnAudioProcess(ref float[] data){
+			float increment = (float)(this.frequency / sampleRate);
 			switch (this.type) {
-				case OscillatorType.Sine: 
-				float increment = (float)(this.frequency * 2 * Math.PI / sampleRate);
+			case OscillatorType.Sine: 
+				increment *=  2.0f * (float) Math.PI;
 				for (var i = 0; i < data.Length; i++){
 					this.phase = this.phase + increment;
-					// this is where we copy audio data to make them “available” to Unity
-					data[i] = (float) Math.Sin(phase);
-//					if (this.phase > 2 * Math.PI) this.phase = 0;
+					data[i] = (float) Math.Sin(this.phase);
 				}
 				break;
-				case OscillatorType.Square: 
-					break;
-				case OscillatorType.Sawtooth: 
-					break;
-				case OscillatorType.Triangle: 
-					break;
+			case OscillatorType.Square: 
+				for (var i = 0; i < data.Length; i++){
+					this.phase = this.phase + increment;
+					this.phase = this.phase % 1;
+					data[i] = this.phase < 0.5 ? -1 : 1;
+				}
+				break;
+			case OscillatorType.Sawtooth: 
+				for (var i = 0; i < data.Length; i++){
+					this.phase = this.phase + increment;
+					this.phase = this.phase % 1;
+					data[i] = (1.0f - this.phase) * 2 - 1;
+				}
+				break;
+			case OscillatorType.Triangle: 
+				for (var i = 0; i < data.Length; i++){
+					this.phase = this.phase + increment;
+					this.phase = this.phase % 1;
+					if (this.phase > 0.5){
+						data[i] = (this.phase - 0.5f) * 4.0f - 1.0f;
+					} else {
+						data[i] = -this.phase * 4.0f + 1.0f;
+					}
+
+				}
+				break;
 			}
 		}
 	}
@@ -156,99 +202,82 @@ public class Tone : MonoBehaviour {
 		
 		public EnvelopePhase phase = EnvelopePhase.Standby;
 
-		//the envelop timing in terms of samples
-		private int attackSamples = 0;
-		private int decaySamples = 0;
-		private int sustainSamples = 0;
-		private int releaseSamples = 0;
+		//the slope of the envelope for each of the phases
+		private float attackStep = 0;
+		private float decayStep = 0;
+		private float releaseStep = 0;
+		private float sustainSamples = 0;
 
 		/**
 		 * ENVELOPE TIMING
 		 */
 		public float attackTime {
-			set { attackSamples = (int) (value * sampleRate);}
-			get { return (float) (attackSamples / sampleRate); }
+			set { attackStep = (1.0f / sampleRate) / value;}
+			get { return (1.0f / sampleRate) / attackStep; }
 		}
 		public float decayTime {
-			set { decaySamples = (int) (value * sampleRate);}
-			get { return (float) (decaySamples / sampleRate); }
+			set { decayStep = (1.0f / sampleRate) / value;}
+			get { return (1.0f / sampleRate) / decayStep; }
 		}
 		public float sustainTime {
 			set { sustainSamples = (int) (value * sampleRate);}
 			get { return (float) (sustainSamples / sampleRate); }
 		}
 		public float releaseTime {
-			set { releaseSamples = (int) (value * sampleRate);}
-			get { return (float) (releaseSamples / sampleRate); }
+			set { releaseStep = (1.0f / sampleRate) / value;}
+			get { return (1.0f / sampleRate) / releaseStep; }
 		}
 
 		public Envelope(){
 			//set some initial values
-			attackTime = 0.2f;
-			decayTime = 0.4f;
-			sustainTime = 1f;
-			releaseTime = 5f;
+			attackTime = 0.00243f;
+			decayTime = 0.855f;
+			sustainTime = 0.0f;
+			releaseTime = 0.54f;
 		}
 
 		//sustain value
-		public float sustainValue = 0.2f;
+		public float sustainValue = 0.0035f;
 	
 
-		//the envelope counter
-		private int envelopeSamples = 0;
+		//the sustain counter
+		private int sustainSamplesPast = 0;
+
+		private float currentSample = 0.0f;
 						
 		public void OnAudioProcess(ref float[] data){
-			int start = 0;
-			int end = 0;
-			float min = 0;
-			float max = 0;
-			float pow = 1;
-			switch(this.phase){
+			for (int i = 0; i < data.Length; i++){
+				switch(this.phase){
 				case EnvelopePhase.Attack:
-					start = 0;
-					end = attackSamples;
-					min = 0;
-					max = 1;
+					currentSample += attackStep;
+					if (currentSample >= 1){
+						currentSample = 1;
+						this.phase++;
+					}
 					break;
 				case EnvelopePhase.Decay:
-					start = attackSamples;
-					end = attackSamples + decaySamples;
-					min = 1;
-					max = sustainValue;
-					pow = 0.5f;
+					currentSample -= decayStep;
+					if (currentSample <= sustainValue){
+						this.phase++;
+						sustainSamplesPast = 0;
+					}
 					break;
 				case EnvelopePhase.Sustain:
-					start = attackSamples + decaySamples;
-					end = attackSamples + decaySamples + sustainSamples;
-					min = sustainValue;
-					max = sustainValue;
+					sustainSamplesPast++;
+					if (sustainSamplesPast > sustainSamples){
+						this.phase++;
+					}
 					break;
 				case EnvelopePhase.Release:
-					start = attackSamples + decaySamples + sustainSamples;
-					end = attackSamples + decaySamples + sustainSamples + releaseSamples;
-					min = sustainValue;
-					max = 0;
-					pow = 0.5f;
+					currentSample -= releaseStep;
+					if (currentSample <= 0){
+						currentSample = 0;
+						this.phase++;
+					}
 					break;
-			}
-			float envAmount = 0;
-			for (int i = 0; i < data.Length; i++){
-				if (envelopeSamples == end){
-					this.phase++;
-					data[i] *= max;
-				} else {
-					float progress = (float) (envelopeSamples - start) / (end - start);
-					if (pow != 1){
-						progress = Mathf.Pow(progress, pow);
-					}
-					if (i == 0){
-						envAmount = Mathf.Lerp(min, max, progress);
-					}
-					data[i] *= Mathf.Lerp(min, max, progress);
 				}
-				envelopeSamples++;
+				data[i] = currentSample * data[i];
 			}
-			//Debug.Log (envAmount);
 		}
 	
 		/**
@@ -260,10 +289,9 @@ public class Tone : MonoBehaviour {
 		}
 
 		/**
-		 * trigger the envelop
+		 * trigger the envelope attack
 		 */
 		public void TriggerAttack(){
-			envelopeSamples = 0;
 			this.phase = EnvelopePhase.Attack;
 		}
 	}

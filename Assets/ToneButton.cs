@@ -16,8 +16,8 @@ public class ToneButton : MonoBehaviour {
 	}
 	
 	void OnGUI() {
-		MakeNoteButtonAndHandleClick (new Rect (100, 100, 500, 180), "A4", 440);
-		MakeNoteButtonAndHandleClick (new Rect (100, 300, 500, 180), "A5", 880);
+		MakeNoteButtonAndHandleClick (new Rect (100, 100, 500, 180), "C2", 65.4064f);
+		MakeNoteButtonAndHandleClick (new Rect (100, 300, 500, 180), "D2", 73.4162f);
 	}
 	
 	private void MakeNoteButtonAndHandleClick( Rect buttonRect, string noteName, float noteFreq ) {
@@ -27,6 +27,7 @@ public class ToneButton : MonoBehaviour {
 			// prevent the note from triggering multiple times
 			if (notePressed != noteName) {
 				notePressed = noteName;
+				Debug.Log(noteFreq);
 				synth.TriggerNote (noteFreq);
 			} 
 		} else {
