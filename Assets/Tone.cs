@@ -14,12 +14,30 @@ public class Tone : MonoBehaviour {
 	/**
 	 * public members
 	 */
-	[Range(0.0f,1.0f)]
-	public float gain = 0.5f;
-	
 	public int polyphony = 32;
 
 	public OscillatorType type;
+
+	[Tooltip("Milliseconds")]
+	public float noteDuration = 0f;
+
+	[Header("Envelope")]
+	[Range(0.0f,5000.0f)]
+	[Tooltip("Milliseconds")]
+	public float attack = 2.43f;
+
+	[Range(0.0f,5000.0f)]
+	[Tooltip("Milliseconds")]
+	public float decay = 855f;
+
+	[Range(-100.0f,0f)]
+	[Tooltip("Decibels")]
+	public float sustain = -49f;
+
+	[Range(0.0f,5000.0f)]
+	[Tooltip("Milliseconds")]
+	public float release = 519f;
+
 
 	/**
 	 * 
@@ -41,18 +59,20 @@ public class Tone : MonoBehaviour {
 		isInitialized = true;
 	}
 
-	/*
-	 * hack which allows the oscillator type to be set from the inspector
-	 * remove for production
+	/**
+	 * called when the inspector is updated
 	 */
-	void Update(){
+	void OnValidate() {
 		if (isInitialized) {
-			if (voices[0].GetOscType() != type){
-				SetOscType(type);
-			}
+			//set the oscillator type
+			SetOscType(type);
+			//set the envelope values
+			SetEnvelope(attack / 1000f, decay / 1000f, dbToGain(sustain), release / 1000f);
+			noteDuration = Mathf.Max(noteDuration, 0);
+			SetNoteDuration(noteDuration / 1000f);
 		}
 	}
-	
+
 	void OnAudioFilterRead(float[] data, int channels){
 		if (isInitialized) {
 			for (int v = 0; v < voices.Length; v++){
@@ -71,10 +91,7 @@ public class Tone : MonoBehaviour {
 				}
 			}
 		}
-		//apply the gain 
 		for (int i = 0; i < data.Length; i = i + channels){
-			//mix the buffers
-			data[i] = gain * data[i];
 			//make it stereo
 			if (channels == 2){
 				data[i + 1] = data[i];
@@ -96,6 +113,39 @@ public class Tone : MonoBehaviour {
 		for (var i = 0; i < voices.Length; i++){
 			voices[i].SetOscType(type);
 		}
+	}
+
+	public void SetEnvelope(float attack, float decay, float sustain, float release){
+		for (var i = 0; i < voices.Length; i++){
+			voices[i].SetEnvelope(attack, decay, sustain, release);
+		}
+	}
+
+	/**
+	 * set the note duration (sustain time) of each of the voices
+	 */
+	public void SetNoteDuration(float noteDuration){
+		for (var i = 0; i < voices.Length; i++){
+			voices[i].SetSustainTime(noteDuration);
+		}
+	}
+
+	/**
+	 * UTILITIES
+	 */
+
+	/**
+	 * returns the value of decibels on a gain scale
+	 */
+	private float dbToGain(float db){
+		return Mathf.Pow(2f, db / 6f);
+	}
+
+	/**
+	 * converts gain values (0-1) to decibels
+	 */
+	private float gainToDb(float gain){
+		return 20f * Mathf.Log10(gain);	
 	}
 	
 	/**
@@ -136,6 +186,23 @@ public class Tone : MonoBehaviour {
 
 		public void SetOscType(OscillatorType type){
 			this.osc.type = type;
+		}
+
+		/**
+		 * Set the envelope values
+		 */
+		public void SetEnvelope(float attack, float decay, float sustain, float release){
+			this.env.attackTime = attack;
+			this.env.decayTime = decay;
+			this.env.sustainValue = sustain;
+			this.env.releaseTime = release;
+		}
+
+		/**
+		 * Set the sustain time in seconds
+		 */
+		public void SetSustainTime(float sustainTime){
+			this.env.sustainTime = sustainTime;
 		}
 	}
 
@@ -204,9 +271,15 @@ public class Tone : MonoBehaviour {
 
 		//the slope of the envelope for each of the phases
 		private float attackStep = 0;
-		private float decayStep = 0;
-		private float releaseStep = 0;
 		private float sustainSamples = 0;
+		
+		//decay and release are exponential
+		private float decaySamples = 0;
+		private float releaseSamples = 0;
+
+		//the progress through the current phase
+		private float phaseProgress = 0;
+
 
 		/**
 		 * ENVELOPE TIMING
@@ -216,36 +289,37 @@ public class Tone : MonoBehaviour {
 			get { return (1.0f / sampleRate) / attackStep; }
 		}
 		public float decayTime {
-			set { decayStep = (1.0f / sampleRate) / value;}
-			get { return (1.0f / sampleRate) / decayStep; }
+			set { decaySamples = (int) (value * sampleRate);}
+			get { return (float) (decaySamples / sampleRate); }
+
 		}
 		public float sustainTime {
-			set { sustainSamples = (int) (value * sampleRate);}
+			set { sustainSamples = (int) (value * sampleRate); Debug.Log (sustainSamples);}
 			get { return (float) (sustainSamples / sampleRate); }
 		}
 		public float releaseTime {
-			set { releaseStep = (1.0f / sampleRate) / value;}
-			get { return (1.0f / sampleRate) / releaseStep; }
+			set { releaseSamples = (int) (value * sampleRate);}
+			get { return (float) (releaseSamples / sampleRate); }
 		}
+
+		public float sustainValue = 0.35f;
 
 		public Envelope(){
 			//set some initial values
 			attackTime = 0.00243f;
 			decayTime = 0.855f;
+			sustainValue = 0.0035f;
 			sustainTime = 0.0f;
-			releaseTime = 0.54f;
+			releaseTime = 0.519f;
 		}
 
-		//sustain value
-		public float sustainValue = 0.0035f;
-	
-
-		//the sustain counter
-		private int sustainSamplesPast = 0;
 
 		private float currentSample = 0.0f;
+
+		private float decaySlope = 0.5f;
 						
 		public void OnAudioProcess(ref float[] data){
+			float progress;
 			for (int i = 0; i < data.Length; i++){
 				switch(this.phase){
 				case EnvelopePhase.Attack:
@@ -253,31 +327,45 @@ public class Tone : MonoBehaviour {
 					if (currentSample >= 1){
 						currentSample = 1;
 						this.phase++;
+						phaseProgress = 0;
 					}
 					break;
 				case EnvelopePhase.Decay:
-					currentSample -= decayStep;
+//					currentSample = decayBase + currentSample * decayCoef;
+					progress = phaseProgress / decaySamples;
+					progress = Mathf.Pow(progress, decaySlope);
+					currentSample = Mathf.Lerp(1, sustainValue, progress);
 					if (currentSample <= sustainValue){
+						currentSample = sustainValue;
 						this.phase++;
-						sustainSamplesPast = 0;
+						phaseProgress = 0;
 					}
 					break;
 				case EnvelopePhase.Sustain:
-					sustainSamplesPast++;
-					if (sustainSamplesPast > sustainSamples){
+					phaseProgress++;
+					if (phaseProgress > sustainSamples){
 						this.phase++;
+						phaseProgress = 0;
 					}
 					break;
 				case EnvelopePhase.Release:
-					currentSample -= releaseStep;
+					progress = phaseProgress / releaseSamples;
+					progress = Mathf.Pow(progress, decaySlope);
+					currentSample = Mathf.Lerp(sustainValue, 0, progress);
 					if (currentSample <= 0){
 						currentSample = 0;
 						this.phase++;
+						phaseProgress = 0;
 					}
 					break;
 				}
 				data[i] = currentSample * data[i];
+				phaseProgress++;
 			}
+		}
+
+		private float calcCoef(float rate, float targetRatio) {
+			return Mathf.Exp(-Mathf.Log((1.0f + targetRatio) / targetRatio) / rate);
 		}
 	
 		/**

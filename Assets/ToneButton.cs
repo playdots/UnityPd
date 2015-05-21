@@ -11,7 +11,7 @@ public class ToneButton : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		GameObject gameObj = GameObject.Find("Main Camera");
+		GameObject gameObj = GameObject.Find("DotSynth");
 		synth = (Tone) gameObj.GetComponent(typeof(Tone));
 	}
 	
