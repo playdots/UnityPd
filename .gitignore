@@ -25,3 +25,16 @@
 sysinfo.txt
 
 *.apk
+
+DotsSynthNative/Library/metadata/
+
+*.o
+
+## Other
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+
+xcuserdata/
+
+DotsSynthNative/NativeCode/Xcode/DotsSynthNative/Library/metadata/
