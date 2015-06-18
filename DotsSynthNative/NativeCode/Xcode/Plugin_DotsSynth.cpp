@@ -157,7 +157,7 @@ namespace DotsSynth
             
             for (int i = 0; i < POLYPHONY; i++){
                 sample += ADSR[i].line(8,adsrEnv) * OSC[i].saw(oscPitches[i]);
-            }            
+            }
             
             
             for(int i = 0; i < inchannels; i++)
