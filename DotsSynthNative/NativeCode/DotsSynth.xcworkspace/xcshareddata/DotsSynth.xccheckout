@@ -14,11 +14,11 @@
 		<string>https://github.com/playdots/tone.cs.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>DotsSynthNative/NativeCode/Xcode/DotsSynth.xcodeproj</string>
+	<string>DotsSynthNative/NativeCode/DotsSynth.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>2378F95BCF6234C1C9B11A7C17A805C7D776F8B3</key>
-		<string>../../../../..</string>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/playdots/tone.cs.git</string>

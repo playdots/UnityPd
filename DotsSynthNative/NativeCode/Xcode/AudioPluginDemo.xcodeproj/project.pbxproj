@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2BC2A8D5144C433D00D5EF79 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC2A8D4144C433D00D5EF79 /* OpenGL.framework */; };
 		3D199B6E1858F3E60063EC53 /* AudioPluginUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D199B5E1858F3E60063EC53 /* AudioPluginUtil.cpp */; };
+		5592FD4E1B390FDD00EB4B08 /* maximilian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5592FD4C1B390FDD00EB4B08 /* maximilian.cpp */; };
 		559A00001B20D8BD00FF688C /* ControlChangeNotifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 559AFF961B20D8BD00FF688C /* ControlChangeNotifier.cpp */; };
 		559A00011B20D8BD00FF688C /* ControlComparison.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 559AFF981B20D8BD00FF688C /* ControlComparison.cpp */; };
 		559A00021B20D8BD00FF688C /* ControlConditioner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 559AFF9A1B20D8BD00FF688C /* ControlConditioner.cpp */; };
@@ -56,7 +57,6 @@
 		559A002C1B20D8BD00FF688C /* TonicFrames.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 559AFFF01B20D8BD00FF688C /* TonicFrames.cpp */; };
 		559A002E1B20D99100FF688C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 559A002D1B20D99100FF688C /* AudioToolbox.framework */; };
 		559A00301B20D9C200FF688C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 559A002F1B20D9C200FF688C /* Accelerate.framework */; };
-		559A00331B20F0BA00FF688C /* maximilian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 559A00311B20F0BA00FF688C /* maximilian.cpp */; };
 		559AFE7D1B20A89500FF688C /* Plugin_DotsSynth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 559AFE7C1B20A89500FF688C /* Plugin_DotsSynth.cpp */; };
 		559AFE8A1B20D12F00FF688C /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 559AFE891B20D12E00FF688C /* CoreAudio.framework */; };
 		559AFFF41B20D8BD00FF688C /* ADSR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 559AFF7E1B20D8BD00FF688C /* ADSR.cpp */; };
@@ -81,10 +81,10 @@
 		3D199B5F1858F3E60063EC53 /* AudioPluginUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioPluginUtil.h; path = ../AudioPluginUtil.h; sourceTree = "<group>"; };
 		3D199B6D1858F3E60063EC53 /* PluginList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginList.h; path = ../PluginList.h; sourceTree = "<group>"; };
 		3DA35E0E175F7CA000FA3842 /* AudioPluginInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioPluginInterface.h; path = ../AudioPluginInterface.h; sourceTree = "<group>"; };
+		5592FD4C1B390FDD00EB4B08 /* maximilian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = maximilian.cpp; path = DotsSynthNative/NativeCode/maximilian.cpp; sourceTree = "<group>"; };
+		5592FD4D1B390FDD00EB4B08 /* maximilian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = maximilian.h; path = DotsSynthNative/NativeCode/maximilian.h; sourceTree = "<group>"; };
 		559A002D1B20D99100FF688C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		559A002F1B20D9C200FF688C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		559A00311B20F0BA00FF688C /* maximilian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = maximilian.cpp; path = "../../../../../../Downloads/Maximilian-master/maximilian.cpp"; sourceTree = "<group>"; };
-		559A00321B20F0BA00FF688C /* maximilian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = maximilian.h; path = "../../../../../../Downloads/Maximilian-master/maximilian.h"; sourceTree = "<group>"; };
 		559AFE7C1B20A89500FF688C /* Plugin_DotsSynth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plugin_DotsSynth.cpp; sourceTree = "<group>"; };
 		559AFE891B20D12E00FF688C /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		559AFF7E1B20D8BD00FF688C /* ADSR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ADSR.cpp; sourceTree = "<group>"; };
@@ -251,8 +251,8 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				559A00311B20F0BA00FF688C /* maximilian.cpp */,
-				559A00321B20F0BA00FF688C /* maximilian.h */,
+				5592FD4C1B390FDD00EB4B08 /* maximilian.cpp */,
+				5592FD4D1B390FDD00EB4B08 /* maximilian.h */,
 				559AFF7D1B20D8BD00FF688C /* Tonic */,
 				559AFFF31B20D8BD00FF688C /* Tonic.h */,
 				8D576317048677EA00EA77CD /* Info.plist */,
@@ -511,12 +511,12 @@
 				559A001A1B20D8BD00FF688C /* Filters.cpp in Sources */,
 				559A00151B20D8BD00FF688C /* ControlValue.cpp in Sources */,
 				3D199B6E1858F3E60063EC53 /* AudioPluginUtil.cpp in Sources */,
-				559A00331B20F0BA00FF688C /* maximilian.cpp in Sources */,
 				559AFFFE1B20D8BD00FF688C /* ControlArithmetic.cpp in Sources */,
 				559AFFFA1B20D8BD00FF688C /* BufferFiller.cpp in Sources */,
 				559A00081B20D8BD00FF688C /* ControlMetro.cpp in Sources */,
 				559AFFFF1B20D8BD00FF688C /* ControlCallback.cpp in Sources */,
 				559AFFFC1B20D8BD00FF688C /* CombFilter.cpp in Sources */,
+				5592FD4E1B390FDD00EB4B08 /* maximilian.cpp in Sources */,
 				559A00041B20D8BD00FF688C /* ControlDbToLinear.cpp in Sources */,
 				559A00211B20D8BD00FF688C /* Noise.cpp in Sources */,
 				559A001C1B20D8BD00FF688C /* FixedValue.cpp in Sources */,

@@ -2,7 +2,7 @@
 #include "Tonic.h"
 #include "maximilian.h"
 
-#define POLYPHONY 8
+const int POLYPHONY = 8;
 
 using namespace Tonic;
 
@@ -11,6 +11,7 @@ namespace DotsSynth
 	enum Param
 	{
 		P_FREQ,
+        P_VEL,
 		P_NUM
 	};
     
@@ -28,10 +29,13 @@ namespace DotsSynth
     int numberOfNotes = 5;
     int noteNumber = 0;
     
-    //the metronome
-    maxiOsc timer;
+    int voice = 0;
     
-    int currentCount,lastCount,voice=0;//these values are used to check if we have a new beat this sample
+    bool wasTriggered = false;
+    
+    //the metronome
+    //maxiOsc timer;
+    
     
 		
 	struct EffectData
@@ -57,7 +61,8 @@ namespace DotsSynth
 	{
 		int numparams = P_NUM;
 		definition.paramdefs = new UnityAudioParameterDefinition [numparams];
-		RegisterParameter(definition, "Frequency", "hz", 20.0f, 10000.0f, 440.0f, 1.0f, 2.0f, P_FREQ);
+		RegisterParameter(definition, "Frequency", "hz", 0.0f, 10000.0f, 0.0f, 1.0f, 2.0f, P_FREQ);
+        RegisterParameter(definition, "Velocity", "", 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, P_VEL);
 		return numparams;
 	}
 
@@ -87,6 +92,10 @@ namespace DotsSynth
 		if(index < 0 || index >= P_NUM)
 			return UNITY_AUDIODSP_ERR_UNSUPPORTED;
 		data->p[index] = value;
+        if (index == P_VEL || index == P_FREQ){
+            wasTriggered = true;
+        }
+        //if the value is either the frequency or the velocity
 		return UNITY_AUDIODSP_OK;
 	}
 
@@ -124,35 +133,27 @@ namespace DotsSynth
 		UNITY_PS3_CELLDMA_GET(&g_EffectData, state->effectdata, sizeof(g_EffectData));
 		data = &g_EffectData.data;
 #endif
+        
+        //if retrigger is high, retrigger the note
+        if (wasTriggered){
+            wasTriggered = false;
+            
+            //trigger a new note
+            ADSR[voice].trigger(0, adsrEnv[0]);
+            oscPitches[voice] =  data->p[P_FREQ];
+            //increment the voice count
+            voice++;
+            if (voice == POLYPHONY){
+                voice = 0;
+            }
+        }
 
         /**
             THE BUFFER FILLING LOOP
          */
         for(unsigned int n = 0; n < length; n++)
         {
-
-            currentCount=(int)timer.phasor(2);//this sets up a metronome that ticks 8 times a second
-            
-            if (lastCount!=currentCount) {//if we have a new timer int this sample, play the sound
-                
-                if (voice==6) {
-                    voice=0;
-                }
-                //set a new pitch
-                oscPitches[voice] = pitches[noteNumber];
-                noteNumber++;
-                noteNumber = noteNumber % numberOfNotes;
-                
-                //trigger the envelope
-                ADSR[voice].trigger(0, adsrEnv[0]);//trigger the envelope from the start
-
-                //increment the voice
-                voice++;
-                
-                lastCount=0;
-            }
         
-            //osc.sinewave(data->p[P_FREQ]);
             float sample = 0;
             
             for (int i = 0; i < POLYPHONY; i++){
@@ -171,6 +172,8 @@ namespace DotsSynth
 #endif
 		return UNITY_AUDIODSP_OK;
 	}
+    
+    
 
 #endif
 }
