@@ -1,42 +1,24 @@
 #include "AudioPluginUtil.h"
-#include "Tonic.h"
-#include "maximilian.h"
-
-const int POLYPHONY = 8;
-
-using namespace Tonic;
+#include "Synth.h"
 
 namespace DotsSynth
 {
 	enum Param
 	{
 		P_FREQ,
-        P_VEL,
+        P_TRIGGER,
+        P_OSC,
+        P_ATTACK,
+        P_DECAY,
+        P_SUSTAIN,
+        P_DURATION,
+        P_RELEASE,
 		P_NUM
 	};
     
-    
-    //the oscillators and envelopes
-    maxiOsc OSC[POLYPHONY];
-    maxiEnvelope ADSR[POLYPHONY];
-    double oscPitches[POLYPHONY];
-    
-    
-    //These are the control values for the envelope
-    double adsrEnv[8]={1,5,0.125,100,0.125,200,0,1000};
-    
-    double pitches[] = {440, 554.365, 659.255, 830.609, 987.767};
-    int numberOfNotes = 5;
-    int noteNumber = 0;
-    
-    int voice = 0;
+    Synth synth;
     
     bool wasTriggered = false;
-    
-    //the metronome
-    //maxiOsc timer;
-    
-    
 		
 	struct EffectData
 	{
@@ -61,8 +43,14 @@ namespace DotsSynth
 	{
 		int numparams = P_NUM;
 		definition.paramdefs = new UnityAudioParameterDefinition [numparams];
-		RegisterParameter(definition, "Frequency", "hz", 0.0f, 10000.0f, 0.0f, 1.0f, 2.0f, P_FREQ);
-        RegisterParameter(definition, "Velocity", "", 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, P_VEL);
+        RegisterParameter(definition, "(internal_freq)", "", 0.0f, 10000.0f, 0.0f, 1.0f, 2.0f, P_FREQ);
+        RegisterParameter(definition, "(internal_trigger)", "", 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, P_TRIGGER);
+        RegisterParameter(definition, "Oscillator", "",0.0f, 3.0f, 0.0f, 1.0f, 1.0f, P_OSC);
+        RegisterParameter(definition, "Attack", "ms", 0.0f, 3000.0f, 5.0f, 1.0f, 2.0f, P_ATTACK);
+        RegisterParameter(definition, "Decay", "ms", 0.0f, 3000.0f, 100.0f, 1.0f, 2.0f, P_DECAY);
+        RegisterParameter(definition, "Sustain", "db", -60.0f, 0.0f, -49.0f, 1.0f, 2.0f, P_SUSTAIN);
+        RegisterParameter(definition, "Duration", "ms", 0.0f, 3000.0f, 0.0f, 1.0f, 1.0f, P_DURATION);
+        RegisterParameter(definition, "Release", "ms",0.0f, 3000.0f, 100.0f, 1.0f, 2.0f, P_RELEASE);
 		return numparams;
 	}
 
@@ -71,11 +59,15 @@ namespace DotsSynth
     */
 	UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK CreateCallback(UnityAudioEffectState* state)
 	{
-        setSampleRate(state->samplerate);
+//        maxiSettings::sampleRate = state->samplerate;
 		EffectData* effectdata = new EffectData;
 		memset(effectdata, 0, sizeof(EffectData));
 		state->effectdata = effectdata;
 		InitParametersFromDefinitions(InternalRegisterEffectDefinition, effectdata->data.p);
+        
+        //setup
+        synth.setSampleRate(state->samplerate);
+        
 		return UNITY_AUDIODSP_OK;
 	}
 
@@ -92,8 +84,20 @@ namespace DotsSynth
 		if(index < 0 || index >= P_NUM)
 			return UNITY_AUDIODSP_ERR_UNSUPPORTED;
 		data->p[index] = value;
-        if (index == P_VEL || index == P_FREQ){
+        if (index == P_TRIGGER){
             wasTriggered = true;
+        }
+        if (index == P_OSC){
+            synth.setOscType((int) data->p[P_OSC]);
+        }
+        //recompute the adsr if any of the values were changed
+        if (index == P_ATTACK || index == P_DECAY ||
+            index == P_SUSTAIN || index == P_DURATION || index == P_RELEASE)
+        {
+            
+
+            synth.setEnvelope(data->p[P_ATTACK], data->p[P_DECAY], data->p[P_SUSTAIN],
+                              data->p[P_DURATION], data->p[P_RELEASE]);
         }
         //if the value is either the frequency or the velocity
 		return UNITY_AUDIODSP_OK;
@@ -138,16 +142,10 @@ namespace DotsSynth
         if (wasTriggered){
             wasTriggered = false;
             
-            //trigger a new note
-            ADSR[voice].trigger(0, adsrEnv[0]);
-            oscPitches[voice] =  data->p[P_FREQ];
-            //increment the voice count
-            voice++;
-            if (voice == POLYPHONY){
-                voice = 0;
-            }
+            //trigger a new note;
+            synth.triggerNote(data->p[P_FREQ]);
         }
-
+        
         /**
             THE BUFFER FILLING LOOP
          */
@@ -156,13 +154,10 @@ namespace DotsSynth
         
             float sample = 0;
             
-            for (int i = 0; i < POLYPHONY; i++){
-                sample += ADSR[i].line(8,adsrEnv) * OSC[i].saw(oscPitches[i]);
-            }
+            sample += synth.tick();
             
-            
-            for(int i = 0; i < inchannels; i++)
-			{
+            //copy it over for the number of channels there are
+            for(int i = 0; i < inchannels; i++){
                 *outbuffer++ = sample;
             }
 		}

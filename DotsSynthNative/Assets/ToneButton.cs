@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.Audio;
 
 
 public class ToneButton : MonoBehaviour {
 	
 	private GameObject gameObj;
-	public AudioMixer mixer;
+	public DotsSynth synth;
 	
 	private string notePressed = " ";
 	
@@ -28,9 +27,7 @@ public class ToneButton : MonoBehaviour {
 			// prevent the note from triggering multiple times
 			if (notePressed != noteName) {
 				notePressed = noteName;
-				Debug.Log(noteFreq);
-				mixer.SetFloat ("DotsFrequency", noteFreq);
-				mixer.SetFloat ("DotsVelocity", Random.value);
+				synth.triggerNote(noteFreq);
 			} 
 		} else {
 			if ( Event.current.type == EventType.Repaint && 
