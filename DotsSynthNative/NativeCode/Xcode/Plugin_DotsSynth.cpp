@@ -45,7 +45,7 @@ namespace DotsSynth
 		definition.paramdefs = new UnityAudioParameterDefinition [numparams];
         RegisterParameter(definition, "(internal_freq)", "", 0.0f, 10000.0f, 0.0f, 1.0f, 2.0f, P_FREQ);
         RegisterParameter(definition, "(internal_trigger)", "", 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, P_TRIGGER);
-        RegisterParameter(definition, "Oscillator", "",0.0f, 3.0f, 0.0f, 1.0f, 1.0f, P_OSC);
+        RegisterParameter(definition, "sin|tri|saw|sq", "",0.0f, 3.0f, 0.0f, 1.0f, 1.0f, P_OSC);
         RegisterParameter(definition, "Attack", "ms", 0.0f, 3000.0f, 5.0f, 1.0f, 2.0f, P_ATTACK);
         RegisterParameter(definition, "Decay", "ms", 0.0f, 3000.0f, 100.0f, 1.0f, 2.0f, P_DECAY);
         RegisterParameter(definition, "Sustain", "db", -60.0f, 0.0f, -49.0f, 1.0f, 2.0f, P_SUSTAIN);
