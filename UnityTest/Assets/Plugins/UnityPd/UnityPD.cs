@@ -34,11 +34,43 @@ public class UnityPD : MonoBehaviour {
     public static IntPtr OpenPatch( string patchName ) {
         string patchDir = Path.Combine (Application.streamingAssetsPath, PATCH_DIR);
 
+        // Android voodoo to load the patch. TODO: use Android APIs to copy whole folder?
+        #if UNITY_ANDROID// && !UNITY_EDITOR
+        string patchJar = Application.persistentDataPath + "/" + patchName;
+
+        if (File.Exists(patchJar))
+        {
+            Debug.Log("Patch already unpacked");
+            File.Delete(patchJar);
+
+            if (File.Exists(patchJar))
+            {
+                Debug.Log("Couldn't delete");               
+            }
+        }
+
+        WWW dataStream = new WWW( Path.Combine( patchDir, patchName ) );
+
+        // Hack to wait till download is done
+        while(!dataStream.isDone) 
+        {
+        }
+
+        if (!String.IsNullOrEmpty(dataStream.error))
+        {
+            Debug.Log("### WWW ERROR IN DATA STREAM:" + dataStream.error);
+        }
+
+        File.WriteAllBytes(patchJar, dataStream.bytes);
+
+        patchDir = Application.persistentDataPath;
+        #else
         if( !File.Exists( Path.Combine( patchDir, patchName ) ) ) {
             throw new FileNotFoundException( patchDir );
         }
+        #endif
 
-        var ptr =  libpd_OpenPatch( patchName, patchDir );
+        var ptr = libpd_OpenPatch( patchName, patchDir );
 
         if(ptr == IntPtr.Zero)
         {
