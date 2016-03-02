@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2BC2A8D5144C433D00D5EF79 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC2A8D4144C433D00D5EF79 /* OpenGL.framework */; };
-		2C1C338D1C87489A008C14F5 /* Plugin_Unity_Pd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C338C1C87489A008C14F5 /* Plugin_Unity_Pd.cpp */; };
+		2C1C338F1C8752B7008C14F5 /* Plugin_UnityPd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C338E1C8752B7008C14F5 /* Plugin_UnityPd.cpp */; };
+		2C1C339A1C875481008C14F5 /* libpd-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C1C33981C8752CF008C14F5 /* libpd-osx.a */; };
 		3D199B6E1858F3E60063EC53 /* AudioPluginUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D199B5E1858F3E60063EC53 /* AudioPluginUtil.cpp */; };
 		559A002E1B20D99100FF688C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 559A002D1B20D99100FF688C /* AudioToolbox.framework */; };
 		559A00301B20D9C200FF688C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 559A002F1B20D9C200FF688C /* Accelerate.framework */; };
@@ -16,10 +17,28 @@
 		8D576314048677EA00EA77CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2C1C33951C8752CF008C14F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C1C33901C8752CF008C14F5 /* libpd.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = "libpd-ios";
+		};
+		2C1C33971C8752CF008C14F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C1C33901C8752CF008C14F5 /* libpd.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 119013AB1486450C00086F19;
+			remoteInfo = "libpd-osx";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 		2BC2A8D4144C433D00D5EF79 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		2C1C338C1C87489A008C14F5 /* Plugin_Unity_Pd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Plugin_Unity_Pd.cpp; path = "../../../../../Downloads/tone.cs-master/DotsSynthNative/NativeCode/Xcode/DotsSynthNative/NativeCode/Plugin_Unity_Pd.cpp"; sourceTree = "<group>"; };
+		2C1C338E1C8752B7008C14F5 /* Plugin_UnityPd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plugin_UnityPd.cpp; sourceTree = "<group>"; };
+		2C1C33901C8752CF008C14F5 /* libpd.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpd.xcodeproj; path = ../../../libpd/libpd.xcodeproj; sourceTree = "<group>"; };
 		3D199B5E1858F3E60063EC53 /* AudioPluginUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AudioPluginUtil.cpp; path = ../AudioPluginUtil.cpp; sourceTree = "<group>"; };
 		3D199B5F1858F3E60063EC53 /* AudioPluginUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioPluginUtil.h; path = ../AudioPluginUtil.h; sourceTree = "<group>"; };
 		3D199B6D1858F3E60063EC53 /* PluginList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginList.h; path = ../PluginList.h; sourceTree = "<group>"; };
@@ -35,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C1C339A1C875481008C14F5 /* libpd-osx.a in Frameworks */,
 				559A00301B20D9C200FF688C /* Accelerate.framework in Frameworks */,
 				559A002E1B20D99100FF688C /* AudioToolbox.framework in Frameworks */,
 				559AFE8A1B20D12F00FF688C /* CoreAudio.framework in Frameworks */,
@@ -59,6 +79,7 @@
 		089C1671FE841209C02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				2C1C33901C8752CF008C14F5 /* libpd.xcodeproj */,
 				559A002F1B20D9C200FF688C /* Accelerate.framework */,
 				559A002D1B20D99100FF688C /* AudioToolbox.framework */,
 				559AFE891B20D12E00FF688C /* CoreAudio.framework */,
@@ -71,7 +92,7 @@
 		08FB77AFFE84173DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				2C1C338C1C87489A008C14F5 /* Plugin_Unity_Pd.cpp */,
+				2C1C338E1C8752B7008C14F5 /* Plugin_UnityPd.cpp */,
 				3D199B5E1858F3E60063EC53 /* AudioPluginUtil.cpp */,
 				3D199B5F1858F3E60063EC53 /* AudioPluginUtil.h */,
 				3D199B6D1858F3E60063EC53 /* PluginList.h */,
@@ -84,6 +105,15 @@
 			isa = PBXGroup;
 			children = (
 				8D576316048677EA00EA77CD /* AudioPlugin_UnityPd.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2C1C33911C8752CF008C14F5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2C1C33961C8752CF008C14F5 /* libpd-ios.a */,
+				2C1C33981C8752CF008C14F5 /* libpd-osx.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,12 +159,35 @@
 			);
 			mainGroup = 089C166AFE841209C02AAC07 /* AudioPluginDemo */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2C1C33911C8752CF008C14F5 /* Products */;
+					ProjectRef = 2C1C33901C8752CF008C14F5 /* libpd.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8D57630D048677EA00EA77CD /* AudioPlugin_UnityPd */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		2C1C33961C8752CF008C14F5 /* libpd-ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libpd-ios.a";
+			remoteRef = 2C1C33951C8752CF008C14F5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2C1C33981C8752CF008C14F5 /* libpd-osx.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libpd-osx.a";
+			remoteRef = 2C1C33971C8752CF008C14F5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8D57630F048677EA00EA77CD /* Resources */ = {
@@ -151,8 +204,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C1C338F1C8752B7008C14F5 /* Plugin_UnityPd.cpp in Sources */,
 				3D199B6E1858F3E60063EC53 /* AudioPluginUtil.cpp in Sources */,
-				2C1C338D1C87489A008C14F5 /* Plugin_Unity_Pd.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,9 +263,12 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PD_ROOT)/**";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
+				PD_ROOT = ../../../libpd;
 				PREBINDING = NO;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -223,8 +279,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PD_ROOT)/**";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PD_ROOT = ../../../libpd;
 				PREBINDING = NO;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = macosx;
 			};
 			name = Release;
