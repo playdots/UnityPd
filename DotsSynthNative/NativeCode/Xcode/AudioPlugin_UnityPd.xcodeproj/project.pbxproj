@@ -106,8 +106,8 @@
 			children = (
 				8D576316048677EA00EA77CD /* AudioPlugin_UnityPd.bundle */,
 			);
-			name = Products;
-			sourceTree = "<group>";
+			path = Products;
+			sourceTree = SOURCE_ROOT;
 		};
 		2C1C33911C8752CF008C14F5 /* Products */ = {
 			isa = PBXGroup;
@@ -221,17 +221,14 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_LOCATION = YES;
-				DSTROOT = "$(PROJECT_DIR)/../../Assets";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = /Plugins;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = AudioPlugin_UnityPd;
 				SDKROOT = macosx;
-				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -245,13 +242,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = YES;
-				DSTROOT = "$(PROJECT_DIR)/../../Assets";
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = /Plugins;
 				PRODUCT_NAME = AudioPlugin_UnityPd;
 				SDKROOT = macosx;
-				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
@@ -259,11 +253,13 @@
 		1DEB911F08733D790010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DSTROOT = "$(PROJECT_DIR)/../../../UnityTest/Assets/Plugins";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(PD_ROOT)/**";
+				INSTALL_PATH = /UnityPd;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PD_ROOT = ../../../libpd;
@@ -276,10 +272,12 @@
 		1DEB912008733D790010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DSTROOT = "$(PROJECT_DIR)/../../../UnityTest/Assets/Plugins";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(PD_ROOT)/**";
+				INSTALL_PATH = /UnityPd;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PD_ROOT = ../../../libpd;
 				PREBINDING = NO;

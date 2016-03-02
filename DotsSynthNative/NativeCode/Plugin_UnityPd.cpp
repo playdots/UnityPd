@@ -35,9 +35,6 @@ namespace UnityPd
         };
     };
     
-    void LoadPatch() {
-    }
-    
 #if !UNITY_SPU
     
     /**
