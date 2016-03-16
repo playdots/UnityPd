@@ -62,7 +62,7 @@ namespace UnityPd
         //setup
         libpd_init();
         libpd_init_audio(2, 2, state->samplerate);
-        fprintf(stderr, "Init: %d", state->samplerate );
+        fprintf(stderr, "Init: %d\n", state->samplerate );
         return UNITY_AUDIODSP_OK;
     }
     
@@ -127,6 +127,7 @@ namespace UnityPd
         }
         
         int numTicks = length / libpd_blocksize();
+//        fprintf( stderr, "numticks: %d", numTicks);
         libpd_process_float(numTicks, inbuffer, outbuffer);
         
 #if UNITY_SPU
@@ -139,12 +140,14 @@ namespace UnityPd
     
 #endif
     
+    extern "C" UNITY_AUDIODSP_EXPORT_API void libpd_EnableAudio() {
+        libpd_add_float(1.0f);
+        libpd_finish_message("pd", "dsp");
+    }
     
     extern "C" UNITY_AUDIODSP_EXPORT_API void* libpd_OpenPatch( const char* patchName, const char* directory )
     {
         void* patch = libpd_openfile(patchName, directory);
-        libpd_add_float(1.0f);
-        libpd_finish_message("pd", "dsp");
         return patch;
     }
     
