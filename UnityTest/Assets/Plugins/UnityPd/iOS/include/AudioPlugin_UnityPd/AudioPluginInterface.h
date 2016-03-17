@@ -102,11 +102,11 @@
 #else
 #		ifndef SInt32_defined
 #			define SInt32_defined
-			typedef signed long SInt32;
+			typedef signed int SInt32;
 #		endif
 #		ifndef UInt32_defined
 #			define UInt32_defined
-			typedef unsigned long UInt32;
+			typedef unsigned int UInt32;
 #		endif
 #		ifndef UInt64_defined
 #			define UInt64_defined

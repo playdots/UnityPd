@@ -17,10 +17,18 @@ using System.IO;
 public class UnityPD : MonoBehaviour {
     const string PATCH_DIR = "pd";
 
-    [DllImport( "AudioPlugin_UnityPd")]
+    #if UNITY_IPHONE
+    [DllImport ("__Internal")]
+    #else
+    [DllImport("AudioPlugin_UnityPd")]
+    #endif   
     private static extern int libpd_GetDollarZero( IntPtr intPtr );
 
+    #if UNITY_IPHONE
+    [DllImport ("__Internal")]
+    #else
     [DllImport("AudioPlugin_UnityPd")]
+    #endif
     private static extern IntPtr libpd_OpenPatch( string patchName, string directory );
 
     public static IntPtr OpenPatch( string patchName ) {
@@ -40,7 +48,11 @@ public class UnityPD : MonoBehaviour {
         return ptr;
     }
 
+    #if UNITY_IPHONE
+    [DllImport ("__Internal")]
+    #else
     [DllImport("AudioPlugin_UnityPd")]
+    #endif    
     private static extern void libpd_ClosePatch( IntPtr patchPtr );
     public static void ClosePatch( IntPtr patchPtr ) {
         libpd_ClosePatch( patchPtr );
