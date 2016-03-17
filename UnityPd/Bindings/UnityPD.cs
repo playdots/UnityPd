@@ -52,7 +52,7 @@ public class UnityPD : MonoBehaviour {
             }
         }
 
-       // libpd_EnableAudio();
+        libpd_EnableAudio();
 
 #if UNITY_ANDROID && !UNITY_EDITOR
         CopyPdResourcesToPersitantPath();
@@ -160,7 +160,7 @@ public class UnityPD : MonoBehaviour {
     /// TODO be smarter about not doing this all at once
     /// TODO use coroutines to avoid blocking
     /// </summary>
-    private static void CopyPdResourcesToPersitantPath() {
+    private static void CopyPdResourcesToPersistentPath() {
         // TODO android java fun
         using ( AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer") ) {
             using ( AndroidJavaObject jo = jc.GetStatic<AndroidJavaObject>("currentActivity") ) {

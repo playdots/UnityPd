@@ -7,11 +7,9 @@ import android.util.Log;
 
 import java.lang.String;
 import java.io.File;
-import java.io.FileDescriptor;
 import java.io.IOException;
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.FileOutputStream;
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
 public class UnityPdHelper {
@@ -28,15 +26,12 @@ public class UnityPdHelper {
 			AssetManager am = context.getResources().getAssets();
 			AssetFileDescriptor descriptor = null;
 			for ( String apkPath : files ) {
-				Log.v( "UnityPdHelper", "Copying " + apkPath );
-				descriptor = am.openFd( apkPath );
-
+				Log.v( "UnityPdHelper", "Copying..." + apkPath );
 				// Create new file to copy into.
-				File file = new File( persistantDataPath + java.io.File.separator + apkPath );
-				file.getParentFile().mkdirs();
-				file.createNewFile();
+				String sdPath = persistantDataPath + java.io.File.separator + apkPath;
+				Log.v( "UnityPdHelper", "Copied!" );
 
-				copyFdToFile( descriptor.getFileDescriptor(), file );
+				copyToSd( apkPath, sdPath, am );
 
 			} 
 		} catch (IOException e) {
@@ -81,17 +76,27 @@ public class UnityPdHelper {
 		return l;
 	}
 	
-	static void copyFdToFile(FileDescriptor src, File dst) throws IOException {
-		FileChannel inChannel = new FileInputStream(src).getChannel();
-		FileChannel outChannel = new FileOutputStream(dst).getChannel();
+	static void copyToSd( String fromFile, String toFile, AssetManager assetManager ) throws IOException {
+		InputStream in = null;
+		FileOutputStream out = null;
 		try {
-			inChannel.transferTo(0, inChannel.size(), outChannel);
-			Log.v( "UnityPdHelper", "Copied! " + dst.getPath() );
-		} finally {
-			if (inChannel != null)
-				inChannel.close();
-			if (outChannel != null)
-				outChannel.close();
+			in = assetManager.open(fromFile);
+			File outFile = new File( toFile );
+			outFile.getParentFile().mkdirs();
+			out = new FileOutputStream( outFile );
+
+			byte[] buffer = new byte[1024];
+			int read;
+			while ((read = in.read(buffer)) != -1) {
+				out.write(buffer, 0, read);
+			}
+			in.close();
+			in = null;
+			out.flush();
+			out.close();
+			out = null;
+		} catch (Exception e) {
+			Log.e("UnityPdHelper", e.getMessage());
 		}
 	}
 }
