@@ -1,6 +1,7 @@
 LOCAL_PATH := $(call my-dir)
 
 PD_ROOT = $(LOCAL_PATH)/../../../../libpd
+DST_PATH = $(LOCAL_PATH)/../../../../UnityPd/Android
 
 # PD-specific flags
 PD_SRC_FILES := \
@@ -54,3 +55,8 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../..
 LOCAL_SRC_FILES := ../../Plugin_UnityPd.cpp ../../AudioPluginUtil.cpp
 LOCAL_STATIC_LIBRARIES := pd
 include $(BUILD_SHARED_LIBRARY)
+
+all: $(DST_PATH)/$(notdir $(LOCAL_BUILT_MODULE))
+
+$(DST_PATH)/$(notdir $(LOCAL_BUILT_MODULE)): $(LOCAL_BUILT_MODULE)
+	cp $< $@

@@ -91,7 +91,7 @@
     
     <target name="jar" depends="debug">
     	<jar
-        	destfile="bin/UnityPdHelper.jar"
+        	destfile="../UnityPd/Android/UnityPdHelper.jar"
         	basedir="bin/classes" />
 	</target>
 
