@@ -1,78 +1,58 @@
-#N canvas 36 179 618 598 10;
-#X obj 125 532 dac~;
+#N canvas 691 71 618 598 10;
 #X floatatom 93 89 5 0 0 0 - - -;
 #X obj 129 366 +~;
 #X obj 128 411 *~ 0.5;
 #X obj 120 258 vsl 15 64 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 5500 1;
+-1 -1 0 1;
 #X obj 241 262 vsl 15 64 0 1 0 0 empty empty empty 0 -9 0 10 -262144
 -1 -1 0 1;
 #X obj 184 269 *~;
-#X obj 68 267 *~;
-#X obj 229 469 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#N canvas 0 22 450 278 (subpatch) 0;
-#X array output 200 float 3;
-#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
-#X coords 0 1 200 -1 200 140 1 0 0;
-#X restore 341 445 graph;
-#X obj 228 494 metro 100;
-#X obj 207 516 tabwrite~ output;
+#X obj 56 284 *~;
 #X obj 358 329 envelope;
 #X obj 124 472 *~;
-#X obj 348 281 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
 #X obj 380 256 vsl 15 32 0 1000 0 0 empty empty attack 0 -9 0 10 -262144
--1 -1 0 1;
+-1 -1 124 1;
 #X obj 408 280 vsl 15 32 0 1000 0 0 empty empty sustain 0 -9 0 10 -262144
--1 -1 1400 1;
-#X obj 433 296 vsl 15 32 0 1000 0 0 empty empty decay 0 -9 0 10 -262144
--1 -1 900 1;
-#X floatatom 357 358 5 0 0 0 - - -;
-#X obj 201 11 receive noteOn;
-#X obj 299 13 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1 -1 0 1;
+#X obj 433 296 vsl 15 32 0 5000 0 0 empty empty decay 0 -9 0 10 -262144
+-1 -1 1240 1;
+#X obj 299 12 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 372 179 r setAttack;
 #X obj 414 212 r setSustain;
 #X obj 459 237 r setDecay;
+#X obj 206 234 r adder-2-vol;
+#X msg 392 62 \; adder-1-freq-mod-freq 2 \; adder-1-freq-mod-amount
+1 \;;
+#X obj 77 12 inlet \$1-note;
+#X obj 112 524 outlet~;
+#X obj 201 11 r \$1-note;
+#X obj 74 233 r adder-1-vol;
 #X obj 57 199 adder adder-1;
 #X obj 179 200 adder adder-2;
-#X msg 392 62 \; adder-1-ratio 2 \; adder-1-strength 1 \; adder-1-controlRatio
-1 \;;
-#X obj 74 233 r adder-1-vol;
-#X obj 206 234 r adder-2-vol;
-#X connect 1 0 24 0;
-#X connect 1 0 25 0;
-#X connect 2 0 3 0;
-#X connect 3 0 13 0;
-#X connect 4 0 7 1;
-#X connect 5 0 6 1;
-#X connect 6 0 2 1;
-#X connect 7 0 2 0;
-#X connect 8 0 10 0;
-#X connect 10 0 11 0;
-#X connect 12 0 13 1;
-#X connect 12 0 18 0;
-#X connect 13 0 0 0;
-#X connect 13 0 0 1;
-#X connect 13 0 11 0;
-#X connect 14 0 12 0;
-#X connect 15 0 12 1;
-#X connect 16 0 12 2;
-#X connect 17 0 12 3;
-#X connect 19 0 1 0;
-#X connect 19 0 14 0;
-#X connect 20 0 1 0;
-#X connect 20 0 14 0;
-#X connect 21 0 15 0;
-#X connect 22 0 16 0;
-#X connect 23 0 17 0;
-#X connect 24 0 7 0;
-#X connect 25 0 6 0;
-#X connect 27 0 7 1;
-#X connect 28 0 6 1;
+#X connect 0 0 22 0;
+#X connect 0 0 23 0;
+#X connect 1 0 2 0;
+#X connect 2 0 8 0;
+#X connect 3 0 6 1;
+#X connect 4 0 5 1;
+#X connect 5 0 1 1;
+#X connect 6 0 1 0;
+#X connect 7 0 8 1;
+#X connect 8 0 19 0;
+#X connect 9 0 7 1;
+#X connect 10 0 7 2;
+#X connect 11 0 7 3;
+#X connect 12 0 0 0;
+#X connect 12 0 7 0;
+#X connect 13 0 9 0;
+#X connect 14 0 10 0;
+#X connect 15 0 11 0;
+#X connect 16 0 5 1;
+#X connect 18 0 0 0;
+#X connect 18 0 7 0;
+#X connect 20 0 0 0;
+#X connect 20 0 7 0;
+#X connect 21 0 6 1;
+#X connect 22 0 6 0;
+#X connect 23 0 5 0;

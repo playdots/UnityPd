@@ -1,0 +1,44 @@
+#N canvas 633 128 771 431 10;
+#X obj 52 50 r playNote;
+#X obj 50 284 dac~;
+#X obj 147 45 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 121 74 5 0 0 0 - - -;
+#X obj 52 100 noteControl;
+#N canvas 717 258 450 300 effects 0;
+#X obj 26 21 inlet~;
+#X obj 30 258 outlet~;
+#X floatatom 49 103 5 0 0 0 - - -;
+#X obj 33 157 lop~;
+#X obj 44 49 r lop-cutoff;
+#X obj 35 202 hip~ 20;
+#X connect 0 0 3 0;
+#X connect 2 0 3 1;
+#X connect 3 0 5 0;
+#X connect 4 0 2 0;
+#X connect 5 0 1 0;
+#X restore 60 143 pd effects;
+#X msg 203 50 \; setAttack 40 \; setSustain 0 \; setDecay 2000 \;;
+#X msg 202 131 \; adder-1-vol 0.7 \; adder-1-control-freq-multiply
+0.99 \; adder-1-freq-mod-freq 4 \; adder-1-freq-mod-amount 3 \;;
+#X msg 202 203 \; adder-2-vol 0.8 \; adder-2-control-freq-multiply
+2.009 \; adder-2-freq-mod-freq 0.7 \; adder-2-freq-mod-amount 2 \;
+;
+#X msg 60 11 440;
+#X msg 234 12 \; playNote 440 \;;
+#X msg 204 291 \; lop-cutoff 200 \;;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array \$0-output 100 float 3;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0;
+#X coords 0 1 99 -1 200 140 1 0 0;
+#X restore 522 136 graph;
+#X connect 0 0 4 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 1 0;
+#X connect 5 0 1 1;
+#X connect 9 0 4 0;

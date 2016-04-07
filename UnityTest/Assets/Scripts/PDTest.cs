@@ -26,6 +26,7 @@ public class PDTest : MonoBehaviour {
     }
 
     void OnApplicationQuit() {
+        UnityPD.Deinit ();
     }
 
     int selected = -1;
@@ -38,7 +39,7 @@ public class PDTest : MonoBehaviour {
 
             int newSelected = GUILayout.SelectionGrid( selected, new []{ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }, 3, GUILayout.ExpandHeight( true ) );
             if ( newSelected != selected ) {
-                dotSoundPlayer.PlayDotConnectedSound ( newSelected );
+                dotSoundPlayer.PlayDotConnectedSound ( newSelected + 1 );
                 selected = newSelected;
             }
         }

@@ -9,18 +9,19 @@
 #include "AudioPluginUtil.h"
 #include "z_libpd.h"
 
-const int NUM_CHANNELS = 1;
+#if UNITY_ANDROID
+#include <android/log.h>
+
+#define APPNAME "UnityPD"
+#endif
+
 
 namespace UnityPd
 {
     enum Param
     {
-        P_FREQ,
         P_NUM
     };
-    
-    bool wasTriggered = false;
-    
     struct EffectData
     {
         
@@ -34,7 +35,6 @@ namespace UnityPd
             unsigned char pad[(sizeof(Data) + 15) & ~15]; // This entire structure must be a multiple of 16 bytes (and and instance 16 byte aligned) for PS3 SPU DMA requirements
         };
     };
-    
 #if !UNITY_SPU
     
     /**
@@ -44,8 +44,16 @@ namespace UnityPd
     {
         int numparams = P_NUM;
         definition.paramdefs = new UnityAudioParameterDefinition [numparams];
-        RegisterParameter(definition, "(internal_freq)", "", 0.0f, 10000.0f, 0.0f, 1.0f, 2.0f, P_FREQ);
+        definition.channels = 2;
         return numparams;
+    }
+    
+    void pdprint(const char *s) {
+        fprintf(stderr, "[#PD] %s", s);
+        
+#if UNITY_ANDROID
+        __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "%s", s);
+#endif
     }
     
     /**
@@ -53,16 +61,23 @@ namespace UnityPd
      */
     UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK CreateCallback(UnityAudioEffectState* state)
     {
-        //        maxiSettings::sampleRate = state->samplerate;
         EffectData* effectdata = new EffectData;
         memset(effectdata, 0, sizeof(EffectData));
         state->effectdata = effectdata;
         InitParametersFromDefinitions(InternalRegisterEffectDefinition, effectdata->data.p);
         
         //setup
+        libpd_set_printhook(pdprint);
+        
         libpd_init();
         libpd_init_audio(2, 2, state->samplerate);
+        
+#if UNITY_ANDROID
+        __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "Init: %d\n", state->samplerate );
+#else
         fprintf(stderr, "Init: %d\n", state->samplerate );
+#endif
+        
         return UNITY_AUDIODSP_OK;
     }
     
@@ -112,31 +127,12 @@ namespace UnityPd
 #endif
     UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK ProcessCallback(UnityAudioEffectState* state, float* inbuffer, float* outbuffer, unsigned int length, int inchannels, int outchannels)
     {
-        EffectData::Data* data = &state->GetEffectData<EffectData>()->data;
-
-#if UNITY_SPU
-        UNITY_PS3_CELLDMA_GET(&g_EffectData, state->effectdata, sizeof(g_EffectData));
-        data = &g_EffectData.data;
-#endif
-        
-        //if retrigger is high, retrigger the note
-        if (wasTriggered){
-            wasTriggered = false;
-            
-            //trigger a new note;
-        }
-        
         int numTicks = length / libpd_blocksize();
-//        fprintf( stderr, "numticks: %d", numTicks);
+        
         libpd_process_float(numTicks, inbuffer, outbuffer);
         
-#if UNITY_SPU
-        UNITY_PS3_CELLDMA_PUT(&g_EffectData, state->effectdata, sizeof(g_EffectData));
-#endif
         return UNITY_AUDIODSP_OK;
     }
-    
-    
     
 #endif
     
