@@ -27,7 +27,7 @@ public class DotSoundPlayer {
     public DotSoundPlayer( DotSoundConfig dotSoundConfig ) {
         // TODO make this variable per world
         _dotSoundConfig = dotSoundConfig;
-        _dotSoundPatch = UnityPD.OpenPatch( "synth.pd" );
+        _dotSoundPatch = UnityPD.OpenPatch( "simpleSynth.pd" );
         _dotSoundConfig.SendValues();
     }
 

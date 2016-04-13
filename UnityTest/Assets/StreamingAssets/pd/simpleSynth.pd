@@ -1,0 +1,42 @@
+#N canvas 144 345 771 431 10;
+#X obj 34 20 r playNote;
+#X obj 34 333 dac~;
+#X msg 234 12 \; playNote 440 \;;
+#X msg 217 57 \; setAttack 40 \; setSustain 0 \; setDecay 2000 \;;
+#X obj 193 227 snapshot~;
+#X floatatom 193 250 5 0 0 0 - - -;
+#X obj 321 169 metro 100;
+#X obj 408 149 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 30 146 noteControl simpleNote;
+#X msg 367 22 \; playNote 550 \;;
+#X obj 188 312 tabwrite~ \$0-output;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array \$0-output 100 float 3;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0;
+#X coords 0 1 99 -1 200 140 1;
+#X restore 416 233 graph;
+#N canvas 213 517 450 300 effects 0;
+#X obj 56 78 inlet~;
+#X obj 67 261 outlet~;
+#X obj 55 155 lop~ 220;
+#X obj 125 107 r lop-cutoff;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 1;
+#X restore 32 246 pd effects;
+#X msg 509 13 \; adder-1-vol 1 \; adder-1-control-freq-multiply 1 \;
+adder-1-freq-mod-freq 4 \; adder-1-freq-mod-amount 5 \;;
+#X msg 506 96 \; adder-2-vol 1 \; adder-2-control-freq-multiply 1 \;
+adder-2-freq-mod-freq 4 \; adder-2-freq-mod-amount 5 \;;
+#X connect 0 0 8 0;
+#X connect 4 0 5 0;
+#X connect 6 0 4 0;
+#X connect 6 0 10 0;
+#X connect 7 0 6 0;
+#X connect 8 0 12 0;
+#X connect 12 0 1 0;
+#X connect 12 0 1 1;
