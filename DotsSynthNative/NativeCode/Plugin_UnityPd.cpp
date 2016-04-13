@@ -9,13 +9,6 @@
 #include "AudioPluginUtil.h"
 #include "z_libpd.h"
 
-#if UNITY_ANDROID
-#include <android/log.h>
-
-#define APPNAME "UnityPD"
-#endif
-
-
 namespace UnityPd
 {
     enum Param
@@ -50,10 +43,6 @@ namespace UnityPd
     
     void pdprint(const char *s) {
         fprintf(stderr, "[#PD] %s", s);
-        
-#if UNITY_ANDROID
-        __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "%s", s);
-#endif
     }
     
     /**
@@ -72,11 +61,7 @@ namespace UnityPd
         libpd_init();
         libpd_init_audio(2, 2, state->samplerate);
         
-#if UNITY_ANDROID
-        __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "Init: %d\n", state->samplerate );
-#else
         fprintf(stderr, "Init: %d\n", state->samplerate );
-#endif
         
         return UNITY_AUDIODSP_OK;
     }

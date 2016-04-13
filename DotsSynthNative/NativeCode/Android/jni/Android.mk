@@ -52,7 +52,6 @@ include $(BUILD_STATIC_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_MODULE := AudioPlugin_UnityPd
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../..
-LOCAL_LDLIBS := -llog
 LOCAL_SRC_FILES := ../../Plugin_UnityPd.cpp ../../AudioPluginUtil.cpp
 LOCAL_STATIC_LIBRARIES := pd
 include $(BUILD_SHARED_LIBRARY)
