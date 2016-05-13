@@ -49,11 +49,30 @@ LOCAL_SRC_FILES := $(PD_SRC_FILES:$(LOCAL_PATH)/%=%)
 LOCAL_EXPORT_C_INCLUDES := $(PD_C_INCLUDES)
 include $(BUILD_STATIC_LIBRARY)
 
+
+# Build libexpr~.so
+
+PD_EXPR_SRC_FILES = \
+	$(PD_ROOT)/pure-data/extra/expr~/vexp.c \
+	$(PD_ROOT)/pure-data/extra/expr~/vexp_fun.c \
+	$(PD_ROOT)/pure-data/extra/expr~/vexp_if.c
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := expr
+LOCAL_C_INCLUDES := $(PD_ROOT)/pure-data/src
+LOCAL_CFLAGS := -DPD
+LOCAL_SRC_FILES := $(PD_EXPR_SRC_FILES:$(LOCAL_PATH)/%=%)
+LOCAL_STATIC_LIBRARIES = pd
+LOCAL_EXPORT_C_INCLUDES := $(PD_C_INCLUDES) $(PD_ROOT)/pure-data/extra/expr~
+include $(BUILD_STATIC_LIBRARY)
+
+
 include $(CLEAR_VARS)
 LOCAL_MODULE := AudioPlugin_UnityPd
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../..
+LOCAL_C_FLAGS = -DPD
 LOCAL_SRC_FILES := ../../Plugin_UnityPd.cpp ../../AudioPluginUtil.cpp
-LOCAL_STATIC_LIBRARIES := pd
+LOCAL_STATIC_LIBRARIES := pd expr
 include $(BUILD_SHARED_LIBRARY)
 
 all: $(DST_PATH)/$(notdir $(LOCAL_BUILT_MODULE))

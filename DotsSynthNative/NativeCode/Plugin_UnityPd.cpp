@@ -9,6 +9,10 @@
 #include "AudioPluginUtil.h"
 #include "z_libpd.h"
 
+#if UNITY_ANDROID
+extern "C" void expr_setup(void);
+#endif
+
 namespace UnityPd
 {
     enum Param
@@ -59,6 +63,9 @@ namespace UnityPd
         libpd_set_printhook(pdprint);
         
         libpd_init();
+#if UNITY_ANDROID
+        expr_setup();
+#endif
         libpd_init_audio(2, 2, state->samplerate);
         
         fprintf(stderr, "Init: %d\n", state->samplerate );
