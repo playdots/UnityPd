@@ -12,8 +12,8 @@ PD_SRC_FILES := \
   $(PD_ROOT)/pure-data/src/d_misc.c $(PD_ROOT)/pure-data/src/d_osc.c $(PD_ROOT)/pure-data/src/d_resample.c \
   $(PD_ROOT)/pure-data/src/d_soundfile.c $(PD_ROOT)/pure-data/src/d_ugen.c \
   $(PD_ROOT)/pure-data/src/g_all_guis.c $(PD_ROOT)/pure-data/src/g_array.c $(PD_ROOT)/pure-data/src/g_bang.c \
-  $(PD_ROOT)/pure-data/src/g_canvas.c $(PD_ROOT)/pure-data/src/g_editor.c $(PD_ROOT)/pure-data/src/g_graph.c \
-  $(PD_ROOT)/pure-data/src/g_guiconnect.c $(PD_ROOT)/pure-data/src/g_hdial.c \
+  $(PD_ROOT)/pure-data/src/g_canvas.c $(PD_ROOT)/pure-data/src/g_clone.c $(PD_ROOT)/pure-data/src/g_editor.c \
+  $(PD_ROOT)/pure-data/src/g_graph.c $(PD_ROOT)/pure-data/src/g_guiconnect.c $(PD_ROOT)/pure-data/src/g_hdial.c \
   $(PD_ROOT)/pure-data/src/g_hslider.c $(PD_ROOT)/pure-data/src/g_io.c $(PD_ROOT)/pure-data/src/g_mycanvas.c \
   $(PD_ROOT)/pure-data/src/g_numbox.c $(PD_ROOT)/pure-data/src/g_readwrite.c \
   $(PD_ROOT)/pure-data/src/g_rtext.c $(PD_ROOT)/pure-data/src/g_scalar.c $(PD_ROOT)/pure-data/src/g_template.c \
@@ -30,13 +30,15 @@ PD_SRC_FILES := \
   $(PD_ROOT)/pure-data/src/x_gui.c $(PD_ROOT)/pure-data/src/x_list.c $(PD_ROOT)/pure-data/src/x_midi.c \
   $(PD_ROOT)/pure-data/src/x_misc.c $(PD_ROOT)/pure-data/src/x_net.c $(PD_ROOT)/pure-data/src/x_array.c \
   $(PD_ROOT)/pure-data/src/x_time.c $(PD_ROOT)/pure-data/src/x_interface.c $(PD_ROOT)/pure-data/src/x_scalar.c \
-  $(PD_ROOT)/pure-data/src/x_text.c $(PD_ROOT)/libpd_wrapper/s_libpdmidi.c \
+  $(PD_ROOT)/pure-data/src/x_text.c $(PD_ROOT)/pure-data/src/x_vexp.c $(PD_ROOT)/pure-data/src/x_vexp_if.c \
+  $(PD_ROOT)/pure-data/src/x_vexp_fun.c $(PD_ROOT)/libpd_wrapper/s_libpdmidi.c \
   $(PD_ROOT)/libpd_wrapper/x_libpdreceive.c $(PD_ROOT)/libpd_wrapper/z_libpd.c \
   $(PD_ROOT)/libpd_wrapper/util/ringbuffer.c $(PD_ROOT)/libpd_wrapper/util/z_queued.c \
-  $(PD_ROOT)/libpd_wrapper/z_hooks.c
+  $(PD_ROOT)/libpd_wrapper/z_hooks.c \
+  $(PD_ROOT)/libpd_wrapper/util/z_print_util.c
 PD_C_INCLUDES := $(PD_ROOT)/pure-data/src $(PD_ROOT)/libpd_wrapper \
   $(PD_ROOT)/libpd_wrapper/util
-PD_CFLAGS := -DPD -DHAVE_UNISTD_H -DHAVE_LIBDL -DUSEAPI_DUMMY -w
+PD_CFLAGS := -DPD -DHAVE_UNISTD_H -DHAVE_LIBDL -DUSEAPI_DUMMY -w -Wall
 PD_JNI_CFLAGS := -Wno-int-to-pointer-cast -Wno-pointer-to-int-cast
 PD_LDLIBS := -ldl
 
@@ -50,20 +52,15 @@ LOCAL_EXPORT_C_INCLUDES := $(PD_C_INCLUDES)
 include $(BUILD_STATIC_LIBRARY)
 
 
-# Build libexpr~.so
-
-PD_EXPR_SRC_FILES = \
-	$(PD_ROOT)/pure-data/extra/expr~/vexp.c \
-	$(PD_ROOT)/pure-data/extra/expr~/vexp_fun.c \
-	$(PD_ROOT)/pure-data/extra/expr~/vexp_if.c
+# Build stdout.so
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := expr
+
+LOCAL_MODULE := stdout
 LOCAL_C_INCLUDES := $(PD_ROOT)/pure-data/src
 LOCAL_CFLAGS := -DPD
-LOCAL_SRC_FILES := $(PD_EXPR_SRC_FILES:$(LOCAL_PATH)/%=%)
-LOCAL_STATIC_LIBRARIES = pd
-LOCAL_EXPORT_C_INCLUDES := $(PD_C_INCLUDES) $(PD_ROOT)/pure-data/extra/expr~
+LOCAL_SRC_FILES := $(PD_ROOT)/pure-data/extra/stdout/stdout.c
+LOCAL_SHARED_LIBRARIES := pd
 include $(BUILD_STATIC_LIBRARY)
 
 
@@ -72,7 +69,7 @@ LOCAL_MODULE := AudioPlugin_UnityPd
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../..
 LOCAL_C_FLAGS = -DPD
 LOCAL_SRC_FILES := ../../Plugin_UnityPd.cpp ../../AudioPluginUtil.cpp
-LOCAL_STATIC_LIBRARIES := pd expr
+LOCAL_STATIC_LIBRARIES := pd
 include $(BUILD_SHARED_LIBRARY)
 
 all: $(DST_PATH)/$(notdir $(LOCAL_BUILT_MODULE))
