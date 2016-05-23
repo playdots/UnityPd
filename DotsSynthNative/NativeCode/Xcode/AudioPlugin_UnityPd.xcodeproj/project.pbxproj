@@ -1,0 +1,502 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2BC2A8D5144C433D00D5EF79 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC2A8D4144C433D00D5EF79 /* OpenGL.framework */; };
+		2C1C338F1C8752B7008C14F5 /* Plugin_UnityPd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C338E1C8752B7008C14F5 /* Plugin_UnityPd.cpp */; };
+		2C1C339A1C875481008C14F5 /* libpd-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C1C33981C8752CF008C14F5 /* libpd-osx.a */; };
+		2C1C33A51C877194008C14F5 /* AudioPlugin_UnityPd_iOS.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 2C1C33A41C877194008C14F5 /* AudioPlugin_UnityPd_iOS.h */; };
+		2C1C33A71C877194008C14F5 /* AudioPlugin_UnityPd_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C33A61C877194008C14F5 /* AudioPlugin_UnityPd_iOS.m */; };
+		2C1C33AB1C877291008C14F5 /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C1C33961C8752CF008C14F5 /* libpd-ios.a */; };
+		2C1C33AC1C87729A008C14F5 /* Plugin_UnityPd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C338E1C8752B7008C14F5 /* Plugin_UnityPd.cpp */; };
+		2C1C33AD1C87729B008C14F5 /* AudioPluginUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D199B5E1858F3E60063EC53 /* AudioPluginUtil.cpp */; };
+		2C1C33AE1C8774FA008C14F5 /* AudioPluginInterface.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 3DA35E0E175F7CA000FA3842 /* AudioPluginInterface.h */; };
+		2C7F32A51C9B093400542611 /* libAudioPlugin_UnityPd.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C1C33A21C877193008C14F5 /* libAudioPlugin_UnityPd.a */; };
+		3D199B6E1858F3E60063EC53 /* AudioPluginUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D199B5E1858F3E60063EC53 /* AudioPluginUtil.cpp */; };
+		559A002E1B20D99100FF688C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 559A002D1B20D99100FF688C /* AudioToolbox.framework */; };
+		559A00301B20D9C200FF688C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 559A002F1B20D9C200FF688C /* Accelerate.framework */; };
+		559AFE8A1B20D12F00FF688C /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 559AFE891B20D12E00FF688C /* CoreAudio.framework */; };
+		8D576314048677EA00EA77CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2C1C33951C8752CF008C14F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C1C33901C8752CF008C14F5 /* libpd.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = "libpd-ios";
+		};
+		2C1C33971C8752CF008C14F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C1C33901C8752CF008C14F5 /* libpd.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 119013AB1486450C00086F19;
+			remoteInfo = "libpd-osx";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2C1C33A01C877193008C14F5 /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(PROJECT_DIR)/../../../UnityPd/iOS/include";
+			dstSubfolderSpec = 0;
+			files = (
+				2C1C33A51C877194008C14F5 /* AudioPlugin_UnityPd_iOS.h in Copy Files */,
+				2C1C33AE1C8774FA008C14F5 /* AudioPluginInterface.h in Copy Files */,
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C7F32A41C9B08F500542611 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(PROJECT_DIR)/../../../UnityPd/iOS";
+			dstSubfolderSpec = 0;
+			files = (
+				2C7F32A51C9B093400542611 /* libAudioPlugin_UnityPd.a in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
+		2BC2A8D4144C433D00D5EF79 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		2C1C338E1C8752B7008C14F5 /* Plugin_UnityPd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Plugin_UnityPd.cpp; path = ../Plugin_UnityPd.cpp; sourceTree = "<group>"; };
+		2C1C33901C8752CF008C14F5 /* libpd.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpd.xcodeproj; path = ../../../libpd/libpd.xcodeproj; sourceTree = "<group>"; };
+		2C1C33A21C877193008C14F5 /* libAudioPlugin_UnityPd.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAudioPlugin_UnityPd.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C1C33A41C877194008C14F5 /* AudioPlugin_UnityPd_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioPlugin_UnityPd_iOS.h; sourceTree = "<group>"; };
+		2C1C33A61C877194008C14F5 /* AudioPlugin_UnityPd_iOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioPlugin_UnityPd_iOS.m; sourceTree = "<group>"; };
+		3D199B5E1858F3E60063EC53 /* AudioPluginUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AudioPluginUtil.cpp; path = ../AudioPluginUtil.cpp; sourceTree = "<group>"; };
+		3D199B5F1858F3E60063EC53 /* AudioPluginUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioPluginUtil.h; path = ../AudioPluginUtil.h; sourceTree = "<group>"; };
+		3D199B6D1858F3E60063EC53 /* PluginList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginList.h; path = ../PluginList.h; sourceTree = "<group>"; };
+		3DA35E0E175F7CA000FA3842 /* AudioPluginInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioPluginInterface.h; path = ../AudioPluginInterface.h; sourceTree = "<group>"; };
+		559A002D1B20D99100FF688C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		559A002F1B20D9C200FF688C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		559AFE891B20D12E00FF688C /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		8D576316048677EA00EA77CD /* AudioPlugin_UnityPd.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioPlugin_UnityPd.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2C1C339F1C877193008C14F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C1C33AB1C877291008C14F5 /* libpd-ios.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D576313048677EA00EA77CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C1C339A1C875481008C14F5 /* libpd-osx.a in Frameworks */,
+				559A00301B20D9C200FF688C /* Accelerate.framework in Frameworks */,
+				559A002E1B20D99100FF688C /* AudioToolbox.framework in Frameworks */,
+				559AFE8A1B20D12F00FF688C /* CoreAudio.framework in Frameworks */,
+				8D576314048677EA00EA77CD /* CoreFoundation.framework in Frameworks */,
+				2BC2A8D5144C433D00D5EF79 /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		089C166AFE841209C02AAC07 /* AudioPluginDemo */ = {
+			isa = PBXGroup;
+			children = (
+				08FB77AFFE84173DC02AAC07 /* Source */,
+				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
+				2C1C33A31C877194008C14F5 /* AudioPlugin_UnityPd_iOS */,
+				19C28FB6FE9D52B211CA2CBB /* Products */,
+			);
+			name = AudioPluginDemo;
+			sourceTree = "<group>";
+		};
+		089C1671FE841209C02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				2C1C33901C8752CF008C14F5 /* libpd.xcodeproj */,
+				559A002F1B20D9C200FF688C /* Accelerate.framework */,
+				559A002D1B20D99100FF688C /* AudioToolbox.framework */,
+				559AFE891B20D12E00FF688C /* CoreAudio.framework */,
+				0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */,
+				2BC2A8D4144C433D00D5EF79 /* OpenGL.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		08FB77AFFE84173DC02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				2C1C338E1C8752B7008C14F5 /* Plugin_UnityPd.cpp */,
+				3D199B5E1858F3E60063EC53 /* AudioPluginUtil.cpp */,
+				3D199B5F1858F3E60063EC53 /* AudioPluginUtil.h */,
+				3D199B6D1858F3E60063EC53 /* PluginList.h */,
+				3DA35E0E175F7CA000FA3842 /* AudioPluginInterface.h */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		19C28FB6FE9D52B211CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D576316048677EA00EA77CD /* AudioPlugin_UnityPd.bundle */,
+				2C1C33A21C877193008C14F5 /* libAudioPlugin_UnityPd.a */,
+			);
+			path = Products;
+			sourceTree = SOURCE_ROOT;
+		};
+		2C1C33911C8752CF008C14F5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2C1C33961C8752CF008C14F5 /* libpd-ios.a */,
+				2C1C33981C8752CF008C14F5 /* libpd-osx.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2C1C33A31C877194008C14F5 /* AudioPlugin_UnityPd_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2C1C33A41C877194008C14F5 /* AudioPlugin_UnityPd_iOS.h */,
+				2C1C33A61C877194008C14F5 /* AudioPlugin_UnityPd_iOS.m */,
+			);
+			path = AudioPlugin_UnityPd_iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2C1C33A11C877193008C14F5 /* AudioPlugin_UnityPd_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C1C33A81C877194008C14F5 /* Build configuration list for PBXNativeTarget "AudioPlugin_UnityPd_iOS" */;
+			buildPhases = (
+				2C1C339E1C877193008C14F5 /* Sources */,
+				2C1C339F1C877193008C14F5 /* Frameworks */,
+				2C1C33A01C877193008C14F5 /* Copy Files */,
+				2C7F32A41C9B08F500542611 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AudioPlugin_UnityPd_iOS;
+			productName = AudioPlugin_UnityPd_iOS;
+			productReference = 2C1C33A21C877193008C14F5 /* libAudioPlugin_UnityPd.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		8D57630D048677EA00EA77CD /* AudioPlugin_UnityPd */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB911A08733D790010E9CD /* Build configuration list for PBXNativeTarget "AudioPlugin_UnityPd" */;
+			buildPhases = (
+				8D57630F048677EA00EA77CD /* Resources */,
+				8D576311048677EA00EA77CD /* Sources */,
+				8D576313048677EA00EA77CD /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AudioPlugin_UnityPd;
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = AudioPluginDemo;
+			productReference = 8D576316048677EA00EA77CD /* AudioPlugin_UnityPd.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		089C1669FE841209C02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				TargetAttributes = {
+					2C1C33A11C877193008C14F5 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 1DEB911E08733D790010E9CD /* Build configuration list for PBXProject "AudioPlugin_UnityPd" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 089C166AFE841209C02AAC07 /* AudioPluginDemo */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2C1C33911C8752CF008C14F5 /* Products */;
+					ProjectRef = 2C1C33901C8752CF008C14F5 /* libpd.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				8D57630D048677EA00EA77CD /* AudioPlugin_UnityPd */,
+				2C1C33A11C877193008C14F5 /* AudioPlugin_UnityPd_iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		2C1C33961C8752CF008C14F5 /* libpd-ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libpd-ios.a";
+			remoteRef = 2C1C33951C8752CF008C14F5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2C1C33981C8752CF008C14F5 /* libpd-osx.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libpd-osx.a";
+			remoteRef = 2C1C33971C8752CF008C14F5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D57630F048677EA00EA77CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2C1C339E1C877193008C14F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C1C33A71C877194008C14F5 /* AudioPlugin_UnityPd_iOS.m in Sources */,
+				2C1C33AC1C87729A008C14F5 /* Plugin_UnityPd.cpp in Sources */,
+				2C1C33AD1C87729B008C14F5 /* AudioPluginUtil.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D576311048677EA00EA77CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C1C338F1C8752B7008C14F5 /* Plugin_UnityPd.cpp in Sources */,
+				3D199B6E1858F3E60063EC53 /* AudioPluginUtil.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB911B08733D790010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = /OSX;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = AudioPlugin_UnityPd;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		1DEB911C08733D790010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				GCC_MODEL_TUNING = G5;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = /OSX;
+				PRODUCT_NAME = AudioPlugin_UnityPd;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		1DEB911F08733D790010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = "$(PROJECT_DIR)/../../../UnityPd";
+				ENABLE_BITCODE = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PD_ROOT)/**";
+				INSTALL_PATH = /UnityPd;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				PD_ROOT = ../../../libpd;
+				PREBINDING = NO;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1DEB912008733D790010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = "$(PROJECT_DIR)/../../../UnityPd";
+				ENABLE_BITCODE = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PD_ROOT)/**";
+				INSTALL_PATH = /UnityPd;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PD_ROOT = ../../../libpd;
+				PREBINDING = NO;
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		2C1C33A91C877194008C14F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DSTROOT = "$(PROJECT_DIR)/../../../UnityPd/";
+				ENABLE_BITCODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INSTALL_PATH = /iOS;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = AudioPlugin_UnityPd;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+			};
+			name = Debug;
+		};
+		2C1C33AA1C877194008C14F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DSTROOT = "$(PROJECT_DIR)/../../../UnityPd/";
+				ENABLE_BITCODE = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INSTALL_PATH = /iOS;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = AudioPlugin_UnityPd;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB911A08733D790010E9CD /* Build configuration list for PBXNativeTarget "AudioPlugin_UnityPd" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB911B08733D790010E9CD /* Debug */,
+				1DEB911C08733D790010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB911E08733D790010E9CD /* Build configuration list for PBXProject "AudioPlugin_UnityPd" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB911F08733D790010E9CD /* Debug */,
+				1DEB912008733D790010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C1C33A81C877194008C14F5 /* Build configuration list for PBXNativeTarget "AudioPlugin_UnityPd_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C1C33A91C877194008C14F5 /* Debug */,
+				2C1C33AA1C877194008C14F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 089C1669FE841209C02AAC07 /* Project object */;
+}

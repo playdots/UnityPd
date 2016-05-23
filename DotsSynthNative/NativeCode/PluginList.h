@@ -1,1 +1,1 @@
-DECLARE_EFFECT("Dots Synth", DotsSynth)
+DECLARE_EFFECT("Unity Pd", UnityPd)
