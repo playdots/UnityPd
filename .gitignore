@@ -27,6 +27,10 @@ sysinfo.txt
 *.apk
 *.o
 
+## NDK build files
+.idea/
+DotsSynthNative/NativeCode/Android/obj/local/armeabi/objs/
+
 ## Other
 *.xccheckout
 *.moved-aside
