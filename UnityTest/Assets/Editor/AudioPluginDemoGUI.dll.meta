@@ -88,7 +88,8 @@ PluginImporter:
         CPU: AnyCPU
     WindowsStoreApps:
       enabled: 0
-      settings: {}
+      settings:
+        CPU: AnyCPU
     Xbox360:
       enabled: 0
       settings: {}
@@ -100,3 +101,4 @@ PluginImporter:
       settings: {}
   userData: 
   assetBundleName: 
+  assetBundleVariant: 
