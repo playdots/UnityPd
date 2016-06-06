@@ -194,7 +194,6 @@ public class UnityPD : MonoBehaviour {
     /// TODO use coroutines to avoid blocking
     /// </summary>
     private static void CopyPdResourcesToPersistentPath() {
-        // TODO android java fun
         using ( AndroidJavaClass jc = new AndroidJavaClass( "com.unity3d.player.UnityPlayer" ) ) {
             using ( AndroidJavaObject jo = jc.GetStatic<AndroidJavaObject>( "currentActivity" ) ) {
                 using ( AndroidJavaClass pdHelperClass = new AndroidJavaClass( "com.weplaydots.UnityPdHelper.UnityPdHelper" ) ) {
