@@ -19,7 +19,8 @@ Open XCode project in `DotsSynthNative/NativeCode/Xcode`
 iOS Switch target to AudioPlugin_UnityPd_iOS, Destination to Generic iOS device
 For OSX Switch target to AudioPluginDemo, Destination as default
 
-To build Debug versions of the plugins, make sure to switch the Targets of both the main Project and the libpd sub-project to Debug
+Build to archive to make release version of plugin. If you do this, remember to get the plugin out of the archive, 
+since it won't be copied to `UnityPd/iOS` like normal 
 
 ### Android
 
