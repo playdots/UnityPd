@@ -18,7 +18,8 @@ obj/local/armeabi/objs-debug/pd/__/__/__/__/libpd/pure-data/src/m_glob.o: \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/linux/types.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/machine/kernel.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/sysmacros.h \
- jni/../../../../libpd/pure-data/src/m_imp.h
+ jni/../../../../libpd/pure-data/src/m_imp.h \
+ jni/../../../../libpd/pure-data/src/s_stuff.h
 
 jni/../../../../libpd/pure-data/src/m_pd.h:
 
@@ -57,3 +58,5 @@ jni/../../../../libpd/pure-data/src/m_pd.h:
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/sysmacros.h:
 
 jni/../../../../libpd/pure-data/src/m_imp.h:
+
+jni/../../../../libpd/pure-data/src/s_stuff.h:

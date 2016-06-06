@@ -25,6 +25,7 @@ obj/local/armeabi/objs-debug/pd/__/__/__/__/libpd/pure-data/src/m_binbuf.o: \
  jni/../../../../libpd/pure-data/src/m_pd.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/stdio.h \
  jni/../../../../libpd/pure-data/src/s_stuff.h \
+ jni/../../../../libpd/pure-data/src/g_canvas.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/errno.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/linux/errno.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/asm/errno.h \
@@ -106,6 +107,8 @@ jni/../../../../libpd/pure-data/src/m_pd.h:
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/stdio.h:
 
 jni/../../../../libpd/pure-data/src/s_stuff.h:
+
+jni/../../../../libpd/pure-data/src/g_canvas.h:
 
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/errno.h:
 

@@ -19,6 +19,7 @@ obj/local/armeabi/objs-debug/pd/__/__/__/__/libpd/pure-data/src/x_misc.o: \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/machine/kernel.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/sysmacros.h \
  jni/../../../../libpd/pure-data/src/s_stuff.h \
+ jni/../../../../libpd/pure-data/src/g_canvas.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/math.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/limits.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/limits.h \
@@ -48,7 +49,8 @@ obj/local/armeabi/objs-debug/pd/__/__/__/__/libpd/pure-data/src/x_misc.o: \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/asm/sigcontext.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/sysconf.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/linux/capability.h \
- /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/pathconf.h
+ /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/pathconf.h \
+ /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/alloca.h
 
 jni/../../../../libpd/pure-data/src/m_pd.h:
 
@@ -87,6 +89,8 @@ jni/../../../../libpd/pure-data/src/m_pd.h:
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/sysmacros.h:
 
 jni/../../../../libpd/pure-data/src/s_stuff.h:
+
+jni/../../../../libpd/pure-data/src/g_canvas.h:
 
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/math.h:
 
@@ -147,3 +151,5 @@ jni/../../../../libpd/pure-data/src/s_stuff.h:
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/linux/capability.h:
 
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/pathconf.h:
+
+/Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/alloca.h:

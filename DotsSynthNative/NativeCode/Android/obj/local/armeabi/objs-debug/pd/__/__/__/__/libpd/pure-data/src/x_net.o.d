@@ -41,7 +41,8 @@ obj/local/armeabi/objs-debug/pd/__/__/__/__/libpd/pure-data/src/x_net.o: \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/netinet/in6.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/netinet/tcp.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/linux/tcp.h \
- /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/netdb.h
+ /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/netdb.h \
+ /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/alloca.h
 
 jni/../../../../libpd/pure-data/src/m_pd.h:
 
@@ -126,3 +127,5 @@ jni/../../../../libpd/pure-data/src/s_stuff.h:
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/linux/tcp.h:
 
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/netdb.h:
+
+/Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/alloca.h:

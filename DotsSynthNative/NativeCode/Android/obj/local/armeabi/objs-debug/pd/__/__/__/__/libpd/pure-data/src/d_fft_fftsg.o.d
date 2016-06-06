@@ -18,6 +18,7 @@ obj/local/armeabi/objs-debug/pd/__/__/__/__/libpd/pure-data/src/d_fft_fftsg.o: \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/linux/types.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/machine/kernel.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/sysmacros.h \
+ /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/alloca.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/math.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/limits.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/limits.h \
@@ -62,6 +63,8 @@ jni/../../../../libpd/pure-data/src/m_pd.h:
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/machine/kernel.h:
 
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/sysmacros.h:
+
+/Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/alloca.h:
 
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/math.h:
 

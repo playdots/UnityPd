@@ -28,10 +28,6 @@ obj/local/armeabi/objs-debug/pd/__/__/__/__/libpd/pure-data/src/g_canvas.o: \
  jni/../../../../libpd/pure-data/src/s_stuff.h \
  jni/../../../../libpd/pure-data/src/g_canvas.h \
  jni/../../../../libpd/pure-data/src/g_all_guis.h \
- /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/fcntl.h \
- /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/linux/fcntl.h \
- /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/asm/fcntl.h \
- /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/asm-generic/fcntl.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/unistd.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/select.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/time.h \
@@ -110,14 +106,6 @@ jni/../../../../libpd/pure-data/src/s_stuff.h:
 jni/../../../../libpd/pure-data/src/g_canvas.h:
 
 jni/../../../../libpd/pure-data/src/g_all_guis.h:
-
-/Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/fcntl.h:
-
-/Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/linux/fcntl.h:
-
-/Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/asm/fcntl.h:
-
-/Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/asm-generic/fcntl.h:
 
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/unistd.h:
 

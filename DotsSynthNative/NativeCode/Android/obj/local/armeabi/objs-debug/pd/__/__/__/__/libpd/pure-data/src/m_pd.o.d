@@ -24,7 +24,8 @@ obj/local/armeabi/objs-debug/pd/__/__/__/__/libpd/pure-data/src/m_pd.o: \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/memory.h \
  jni/../../../../libpd/pure-data/src/m_pd.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/stdio.h \
- jni/../../../../libpd/pure-data/src/m_imp.h
+ jni/../../../../libpd/pure-data/src/m_imp.h \
+ jni/../../../../libpd/pure-data/src/g_canvas.h
 
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/stdlib.h:
 
@@ -75,3 +76,5 @@ jni/../../../../libpd/pure-data/src/m_pd.h:
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/stdio.h:
 
 jni/../../../../libpd/pure-data/src/m_imp.h:
+
+jni/../../../../libpd/pure-data/src/g_canvas.h:

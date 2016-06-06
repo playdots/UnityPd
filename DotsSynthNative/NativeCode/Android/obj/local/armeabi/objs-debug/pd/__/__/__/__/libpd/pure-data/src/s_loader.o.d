@@ -52,7 +52,8 @@ obj/local/armeabi/objs-debug/pd/__/__/__/__/libpd/pure-data/src/s_loader.o: \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/linux/stat.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/endian.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/endian.h \
- /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/machine/endian.h
+ /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/machine/endian.h \
+ jni/../../../../libpd/pure-data/src/g_canvas.h
 
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/dlfcn.h:
 
@@ -159,3 +160,5 @@ jni/../../../../libpd/pure-data/src/s_stuff.h:
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/endian.h:
 
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/machine/endian.h:
+
+jni/../../../../libpd/pure-data/src/g_canvas.h:

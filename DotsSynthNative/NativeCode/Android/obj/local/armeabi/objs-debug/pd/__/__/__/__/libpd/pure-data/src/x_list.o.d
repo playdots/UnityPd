@@ -19,7 +19,8 @@ obj/local/armeabi/objs-debug/pd/__/__/__/__/libpd/pure-data/src/x_list.o: \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/machine/kernel.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/sys/sysmacros.h \
  /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/string.h \
- /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/malloc.h
+ /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/malloc.h \
+ /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/alloca.h
 
 jni/../../../../libpd/pure-data/src/m_pd.h:
 
@@ -60,3 +61,5 @@ jni/../../../../libpd/pure-data/src/m_pd.h:
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/string.h:
 
 /Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/malloc.h:
+
+/Users/eddie/Library/Android/ndk/platforms/android-3/arch-arm/usr/include/alloca.h:
