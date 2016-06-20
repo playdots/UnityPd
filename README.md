@@ -52,6 +52,11 @@ Add an Audio Mixer Group to your project if you haven't already, and then a `Uni
 If you want to purely generate sound with Pd, make sure to turn `Auto Mixer Suspend` on the Mixer Group to
 make sure Pd keeps receiving process calls even when no sounds are being generated.
 
+### iOS
+Unity on iOS needs to load the plugin when the app starts up. To do this you need to edit the `UnityAppController.mm` file:
+- add `#import "AudioPluginInterface.h;` (this header is included with the iOS plugin files
+- find the `preStartUnity` method and add the line `UnityRegisterAudioPlugin(&UnityGetAudioEffectDefinitions);`
+
 
 ## How 2 Use
 
