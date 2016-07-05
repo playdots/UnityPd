@@ -19,6 +19,16 @@ public class UnityPD : MonoBehaviour {
 
     private static UnityPD _instance;
 
+    public static string PdPatchDirectory {
+        get {
+#if UNITY_ANDROID && !UNITY_EDITOR
+            return Path.Combine( Application.persistentDataPath, PATCH_DIR );
+#else
+            return Path.Combine( Application.streamingAssetsPath, PATCH_DIR );
+#endif
+        }
+    }
+
     void Awake() {
         if ( _instance && _instance != this ) {
             Debug.LogWarning( "[#UnityPd] UnityPD already in scene, destroying" );
@@ -60,16 +70,17 @@ public class UnityPD : MonoBehaviour {
 
 #if UNITY_ANDROID && !UNITY_EDITOR
         CopyPdResourcesToPersistentPath();
-        AddToSearchPath( Path.Combine( Application.persistentDataPath, PATCH_DIR ) );
-#else
-        AddToSearchPath( Path.Combine( Application.streamingAssetsPath, PATCH_DIR ) );
 #endif
+        
+        AddToSearchPath( PdPatchDirectory );
     }
 
     public static void Deinit() {
         foreach ( var patchPtr in _openPatches.Values )
             libpd_ClosePatch( patchPtr );
         _openPatches.Clear();
+
+        ClearSearchPath();
     }
     #endregion
 
@@ -92,6 +103,12 @@ public class UnityPD : MonoBehaviour {
     /// </summary>
     public static void ClearSearchPath() {
         libpd_clear_search_path();
+    }
+
+    public static void ClearAddedSearchPaths() {
+        ClearSearchPath();
+
+        AddToSearchPath( PdPatchDirectory );
     }
 
 
@@ -140,11 +157,8 @@ public class UnityPD : MonoBehaviour {
 #if UNITY_EDITOR_WIN
         return -1;
 #else
-    #if UNITY_ANDROID && !UNITY_EDITOR
-        string patchDir = Path.Combine (Application.persistentDataPath, PATCH_DIR);
-    #else
-        string patchDir = Path.Combine( Application.streamingAssetsPath, PATCH_DIR );
-    #endif
+        string patchDir = PdPatchDirectory;
+
         if ( !File.Exists( Path.Combine( patchDir, patchName ) ) ) {
             throw new FileNotFoundException( patchDir );
         }
@@ -194,7 +208,6 @@ public class UnityPD : MonoBehaviour {
     /// TODO use coroutines to avoid blocking
     /// </summary>
     private static void CopyPdResourcesToPersistentPath() {
-        // TODO android java fun
         using ( AndroidJavaClass jc = new AndroidJavaClass( "com.unity3d.player.UnityPlayer" ) ) {
             using ( AndroidJavaObject jo = jc.GetStatic<AndroidJavaObject>( "currentActivity" ) ) {
                 using ( AndroidJavaClass pdHelperClass = new AndroidJavaClass( "com.weplaydots.UnityPdHelper.UnityPdHelper" ) ) {

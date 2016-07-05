@@ -19,6 +19,8 @@ public class PDTest : MonoBehaviour {
     DotSoundPlayer dotSoundPlayer;
 
     IEnumerator Start() {
+        yield return new WaitForSeconds (1f);
+
         UnityPD.Init ();
         yield return new WaitForSeconds (2f);
 

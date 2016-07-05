@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="YOUR_BUNDLE_ID">
-
-	<uses-sdk android:targetSdkVersion='23' />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-</manifest>
