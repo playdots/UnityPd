@@ -31,7 +31,7 @@ public class UnityPD : MonoBehaviour {
 
     void Awake() {
         if ( _instance && _instance != this ) {
-            Debug.LogWarning( "[#UnityPd] UnityPD already in scene, destroying" );
+            Logger.LogWarning( "UnityPD already in scene, destroying" );
             Destroy( gameObject );
             return;
         }
@@ -66,6 +66,7 @@ public class UnityPD : MonoBehaviour {
             }
         }
 
+        Logger.Log( "Initializing..." );
         UnityPd_EnableAudio();
 
 #if UNITY_ANDROID && !UNITY_EDITOR
@@ -73,6 +74,7 @@ public class UnityPD : MonoBehaviour {
 #endif
         
         AddToSearchPath( PdPatchDirectory );
+        Logger.Log( "...Initialized!" );
     }
 
     public static void Deinit() {
@@ -163,7 +165,7 @@ public class UnityPD : MonoBehaviour {
             throw new FileNotFoundException( patchDir );
         }
 
-        Debug.Log( string.Format( "[#UnityPd] Opening patch {0} in {1}", patchName, patchDir ) );
+        Logger.Log( string.Format( "Opening patch {0} in {1}", patchName, patchDir ) );
         var ptr = UnityPd_OpenPatch( patchName, patchDir );
 
         if ( ptr == IntPtr.Zero ) {
@@ -198,10 +200,11 @@ public class UnityPD : MonoBehaviour {
             _openPatches.Remove( patchHandle );
         }
         else
-            Debug.LogWarning( "[#UnityPd] Patch " + patchPtr + " not open" );
+            Logger.LogWarning( "Patch " + patchPtr + " not open" );
 #endif
     }
 
+#if UNITY_ANDROID
     /// <summary>
     /// Copies entire PD directory from StreamingAssets (in the APK) to a persistant, non-packed location
     /// TODO be smarter about not doing this all at once
@@ -217,7 +220,7 @@ public class UnityPD : MonoBehaviour {
             }
         }
     }
-
+#endif
     #endregion
 
     #region Messages
@@ -263,4 +266,21 @@ public class UnityPD : MonoBehaviour {
         UnityPd_SendSymbol( receiver, message );
     }
     #endregion
+
+    private static class Logger {
+        [System.Diagnostics.Conditional( "DEVELOPMENT_BUILD" )]
+        public static void Log( string logString, UnityEngine.Object context = null ) {
+            Debug.Log( "[#UnityPd] " + logString, context );
+        }
+
+        [System.Diagnostics.Conditional( "DEVELOPMENT_BUILD" )]
+        public static void LogWarning( string logString, UnityEngine.Object context = null ) {
+            Debug.LogWarning( "[#UnityPd] " + logString, context );
+        }
+
+        [System.Diagnostics.Conditional( "DEVELOPMENT_BUILD" )]
+        public static void LogError( string logString, UnityEngine.Object context = null ) {
+            Debug.LogError( "[#UnityPd] " + logString, context );
+        }
+    }
 }
