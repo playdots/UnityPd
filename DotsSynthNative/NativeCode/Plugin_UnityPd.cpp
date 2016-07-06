@@ -7,7 +7,9 @@
 //
 
 #include "AudioPluginUtil.h"
-#include "z_libpd.h"
+#ifndef UNITY_WIN
+#include <z_libpd.h>
+#endif
 
 namespace UnityPd
 {
@@ -56,13 +58,14 @@ namespace UnityPd
         InitParametersFromDefinitions(InternalRegisterEffectDefinition, effectdata->data.p);
         
         //setup
+#ifndef UNITY_WIN
         libpd_set_printhook(pdprint);
         
         libpd_init();
         libpd_init_audio(2, 2, state->samplerate);
         
         fprintf(stderr, "Init: %d\n", state->samplerate );
-        
+#endif
         return UNITY_AUDIODSP_OK;
     }
     
@@ -112,15 +115,18 @@ namespace UnityPd
 #endif
     UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK ProcessCallback(UnityAudioEffectState* state, float* inbuffer, float* outbuffer, unsigned int length, int inchannels, int outchannels)
     {
+#ifndef UNITY_WIN
         int numTicks = length / libpd_blocksize();
         
         libpd_process_float(numTicks, inbuffer, outbuffer);
-        
+#endif
+
         return UNITY_AUDIODSP_OK;
     }
     
 #endif
     
+#ifndef UNITY_WIN
     extern "C" UNITY_AUDIODSP_EXPORT_API void libpd_EnableAudio() {
         if (libpd_start_message(16)) { // request space for 16 elements
             // handle allocation failure, very unlikely in this case
@@ -144,4 +150,5 @@ namespace UnityPd
     {
         return libpd_getdollarzero(patchPtr);
     }
+#endif
 }
