@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -28,19 +28,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -84,16 +88,20 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>D:\eddie\Documents\Dev\Dots\ToneCS\libpd\libpd_wrapper;D:\eddie\Documents\Dev\Dots\ToneCS\libpd\pure-data\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>kernel32.lib;user32.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent />
+    <PostBuildEvent />
+    <PostBuildEvent />
     <PostBuildEvent>
-      <Command>mkdir ..\..\Assets\Plugins\x86
-copy $(TargetPath) ..\..\Assets\Plugins\x86\$(TargetName).dll
+      <Command>mkdir ..\..\..\UnityPd\Windows
+copy $(TargetPath) ..\..\..\UnityPd\Windows\$(TargetName).dll
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -107,15 +115,17 @@ copy $(TargetPath) ..\..\Assets\Plugins\x86\$(TargetName).dll
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>D:\eddie\Documents\Dev\Dots\ToneCS\libpd\libpd_wrapper;D:\eddie\Documents\Dev\Dots\ToneCS\libpd\pure-data\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>kernel32.lib;user32.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent />
     <PostBuildEvent>
-      <Command>mkdir ..\..\Assets\Plugins\x86_64
-copy $(TargetPath) ..\..\Assets\Plugins\x86_64\$(TargetName).dll
+      <Command>mkdir ..\..\..\UnityPd\Windows
+copy $(TargetPath) ..\..\..\UnityPd\Windows\$(TargetName).dll
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -130,6 +140,7 @@ copy $(TargetPath) ..\..\Assets\Plugins\x86_64\$(TargetName).dll
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>D:\eddie\Documents\Dev\Dots\ToneCS\libpd\libpd_wrapper;D:\eddie\Documents\Dev\Dots\ToneCS\libpd\pure-data\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -137,11 +148,15 @@ copy $(TargetPath) ..\..\Assets\Plugins\x86_64\$(TargetName).dll
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>kernel32.lib;user32.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent />
+    <PostBuildEvent />
+    <PostBuildEvent />
+    <PostBuildEvent />
     <PostBuildEvent>
-      <Command>mkdir ..\..\Assets\Plugins\x86
-copy $(TargetPath) ..\..\Assets\Plugins\x86\$(TargetName).dll
+      <Command>mkdir ..\..\..\UnityPd\Windows
+copy $(TargetPath) ..\..\..\UnityPd\Windows\$(TargetName).dll
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -156,36 +171,25 @@ copy $(TargetPath) ..\..\Assets\Plugins\x86\$(TargetName).dll
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>D:\eddie\Documents\Dev\Dots\ToneCS\libpd\libpd_wrapper;D:\eddie\Documents\Dev\Dots\ToneCS\libpd\pure-data\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <AdditionalDependencies>kernel32.lib;user32.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent />
     <PostBuildEvent>
-      <Command>mkdir ..\..\Assets\Plugins\x86_64
-copy $(TargetPath) ..\..\Assets\Plugins\x86_64\$(TargetName).dll
+      <Command>mkdir ..\..\..\UnityPd\Windows
+copy $(TargetPath) ..\..\..\UnityPd\Windows\$(TargetName).dll
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\AudioPluginUtil.cpp" />
-    <ClCompile Include="..\Plugin_ConvolutionReverb.cpp" />
-    <ClCompile Include="..\Plugin_CorrelationMeter.cpp" />
-    <ClCompile Include="..\Plugin_Equalizer.cpp" />
-    <ClCompile Include="..\Plugin_Lofinator.cpp" />
-    <ClCompile Include="..\Plugin_LevelMixer.cpp" />
-    <ClCompile Include="..\Plugin_LoudnessMeter.cpp" />
-    <ClCompile Include="..\Plugin_Multiband.cpp" />
-    <ClCompile Include="..\Plugin_NoiseBox.cpp" />
-    <ClCompile Include="..\Plugin_RingModulator.cpp" />
-    <ClCompile Include="..\Plugin_StereoWidener.cpp" />
-    <ClCompile Include="..\Plugin_TeeBee.cpp" />
-    <ClCompile Include="..\Plugin_TeeDee.cpp" />
-    <ClCompile Include="..\Plugin_Teleport.cpp" />
-    <ClCompile Include="..\Plugin_Vocoder.cpp" />
+    <ClCompile Include="..\Plugin_UnityPd.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\AudioPluginInterface.h" />

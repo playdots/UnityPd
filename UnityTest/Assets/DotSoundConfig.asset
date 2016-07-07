@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fe132df6239a4babaa99e909fb18a6d, type: 3}
+  m_Name: DotSoundConfig
+  m_EditorClassIdentifier: 
+  attack: 60
+  sustain: 200
+  decay: 500
+  adder1Vol: 0.87
+  adder1FreqMultiply: 1.01
+  adder1ModFreq: 3
+  adder1ModAmount: 14.47
+  adder2Vol: 0.967
+  adder2FreqMultiply: 1.99
+  adder2ModFreq: 3
+  adder2ModAmount: 16.76
+  lopCutoff: 200
