@@ -68,11 +68,12 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := AudioPlugin_UnityPd
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../..
 LOCAL_C_FLAGS = -DPD
+LOCAL_LDLIBS += -latomic
 LOCAL_SRC_FILES := ../../Plugin_UnityPd.cpp ../../AudioPluginUtil.cpp
 LOCAL_STATIC_LIBRARIES := pd
 include $(BUILD_SHARED_LIBRARY)
 
-all: $(DST_PATH)/$(notdir $(LOCAL_BUILT_MODULE))
+all: $(DST_PATH)/$(TARGET_ARCH_ABI)
 
-$(DST_PATH)/$(notdir $(LOCAL_BUILT_MODULE)): $(LOCAL_BUILT_MODULE)
-	cp $< $@
+$(DST_PATH)/$(TARGET_ARCH_ABI): $(LOCAL_BUILT_MODULE)
+	mkdir -p $@ && cp $< $@
