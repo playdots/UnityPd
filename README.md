@@ -22,7 +22,7 @@ For OSX Switch target to AudioPluginDemo, Destination as default
 Build to archive to make release version of plugin. If you do this, remember to get the plugin out of the archive, 
 since it won't be copied to `UnityPd/iOS` like normal 
 
-### Android
+### Android (arm & x86)
 
 #### libPD & Unity native audio plugin
 Get the JDK! <http://developer.android.com/intl/es/tools/sdk/ndk/index.html>
@@ -57,6 +57,7 @@ Unity on iOS needs to load the plugin when the app starts up. To do this you nee
 - add `#import "AudioPluginInterface.h;` (this header is included with the iOS plugin files
 - find the `preStartUnity` method and add the line `UnityRegisterAudioPlugin(&UnityGetAudioEffectDefinitions);`
 
+Alternatively, you can override AppController, see the example project `Assets/Plugins/iOS/UnityPdAppController` for an example
 
 ## How 2 Use
 
@@ -76,5 +77,14 @@ of the opened patch
 - ClosePatch( int patchHandle )
 Closes the patch with the given $0 handle
 
+#### Messages
+(remember receivers are global across all open patches)
+
 - SendFloat( string receiver, float message )
-Send a float to the given receiver (remember receivers are global across all open patches)
+Send a float to the given receiver
+
+- SendBang( string receiver )
+Send a bang to the given receiver
+
+- SendSymbol( string receiver, string symbol )
+Send a symbol(pd speak for string) to the given receiver
