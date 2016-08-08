@@ -4,19 +4,21 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "2378F95BCF6234C1C9B11A7C17A805C7D776F8B3" : 0,
     "6F7A20C0CDB7BDCD5180DBA15CA6EBFFD435B7B5" : 0,
-    "1A0B07D1631AC7F0F17FCE76695E42D64F01958F" : 0
+    "FCEA0B43064F7C1F6B20BB79A3A16B9980328F4B" : 0,
+    "1A0B07D1631AC7F0F17FCE76695E42D64F01958F" : 0,
+    "2378F95BCF6234C1C9B11A7C17A805C7D776F8B3" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "94BE96EE-FF19-4D63-84C6-739EA270894C",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "2378F95BCF6234C1C9B11A7C17A805C7D776F8B3" : "ToneDotCs\/",
-    "6F7A20C0CDB7BDCD5180DBA15CA6EBFFD435B7B5" : "ToneDotCs\/libpd\/pure-data\/",
-    "1A0B07D1631AC7F0F17FCE76695E42D64F01958F" : "ToneDotCs\/libpd\/"
+    "6F7A20C0CDB7BDCD5180DBA15CA6EBFFD435B7B5" : "libpd\/pure-data\/",
+    "FCEA0B43064F7C1F6B20BB79A3A16B9980328F4B" : "ToneDotCs\/libpd\/jni\/opensl_stream\/",
+    "1A0B07D1631AC7F0F17FCE76695E42D64F01958F" : "libpd\/",
+    "2378F95BCF6234C1C9B11A7C17A805C7D776F8B3" : "ToneDotCs\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "AudioPlugin_UnityPd",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
-  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "DotsSynthNative\/NativeCode\/Xcode\/AudioPlugin_UnityPd.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "src\/Xcode\/AudioPlugin_UnityPd.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/libpd\/libpd.git",
@@ -32,6 +34,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git:\/\/git.code.sf.net\/p\/pure-data\/pure-data",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6F7A20C0CDB7BDCD5180DBA15CA6EBFFD435B7B5"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git:\/\/github.com\/nettoyeurny\/opensl_stream.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FCEA0B43064F7C1F6B20BB79A3A16B9980328F4B"
     }
   ]
 }

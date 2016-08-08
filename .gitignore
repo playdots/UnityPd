@@ -30,8 +30,8 @@ sysinfo.txt
 
 ## NDK build files
 .idea/
-DotsSynthNative/NativeCode/Android/obj/
-DotsSynthNative/NativeCode/Android/libs/
+src/Android/obj/
+src/Android/libs/
 
 
 ## Other

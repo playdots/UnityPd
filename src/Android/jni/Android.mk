@@ -1,7 +1,7 @@
 LOCAL_PATH := $(call my-dir)
 
-PD_ROOT = $(LOCAL_PATH)/../../../../libpd
-DST_PATH = $(LOCAL_PATH)/../../../../UnityPd/Android
+PD_ROOT = $(LOCAL_PATH)/../../../libpd
+DST_PATH = $(LOCAL_PATH)/../../../UnityPd/Android
 
 # PD-specific flags
 PD_SRC_FILES := \
