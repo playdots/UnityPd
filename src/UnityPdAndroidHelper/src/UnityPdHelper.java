@@ -19,7 +19,7 @@ public class UnityPdHelper {
 		context = unityContext;
 	}
 
-	public static void CopyAssetsFolderToSd( String apkFolderPath, String persistantDataPath ) {
+	public static void CopyAssetsFolderToPersistantData( String apkFolderPath, String persistantDataPath ) {
 		ArrayList<String> files = listAssetsContent( apkFolderPath );
 		
 		try {
@@ -76,7 +76,7 @@ public class UnityPdHelper {
 		return l;
 	}
 	
-	static void copyToSd( String fromFile, String toFile, AssetManager assetManager ) throws IOException {
+	static void copyToFile( String fromFile, String toFile, AssetManager assetManager ) throws IOException {
 		InputStream in = null;
 		FileOutputStream out = null;
 		try {
