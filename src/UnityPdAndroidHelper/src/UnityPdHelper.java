@@ -28,10 +28,10 @@ public class UnityPdHelper {
 			for ( String apkPath : files ) {
 				Log.v( "UnityPdHelper", "Copying..." + apkPath );
 				// Create new file to copy into.
-				String sdPath = persistantDataPath + java.io.File.separator + apkPath;
+				String persistantPath = persistantDataPath + java.io.File.separator + apkPath;
 				Log.v( "UnityPdHelper", "Copied!" );
 
-				copyToSd( apkPath, sdPath, am );
+				copyToFile( apkPath, persistantPath, am );
 
 			} 
 		} catch (IOException e) {

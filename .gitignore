@@ -35,6 +35,7 @@ src/Android/libs/
 
 ## Android Java ignore files
 src/UnityPdAndroidHelper/local.properties
+src/UnityPdAndroidHelper/bin
 
 ## Other
 *.xccheckout
@@ -43,7 +44,7 @@ src/UnityPdAndroidHelper/local.properties
 
 xcuserdata/
 
-DotsSynthNative/NativeCode/Xcode/DotsSynthNative/Library/metadata/
+src/Xcode/DotsSynthNative/Library/metadata/
 
 #########################
 # .gitignore file for Xcode4 and Xcode5 Source projects
