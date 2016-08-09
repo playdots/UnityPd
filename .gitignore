@@ -30,9 +30,12 @@ sysinfo.txt
 
 ## NDK build files
 .idea/
-DotsSynthNative/NativeCode/Android/obj/
-DotsSynthNative/NativeCode/Android/libs/
+src/Android/obj/
+src/Android/libs/
 
+## Android Java ignore files
+src/UnityPdAndroidHelper/local.properties
+src/UnityPdAndroidHelper/bin
 
 ## Other
 *.xccheckout
@@ -41,7 +44,7 @@ DotsSynthNative/NativeCode/Android/libs/
 
 xcuserdata/
 
-DotsSynthNative/NativeCode/Xcode/DotsSynthNative/Library/metadata/
+src/Xcode/DotsSynthNative/Library/metadata/
 
 #########################
 # .gitignore file for Xcode4 and Xcode5 Source projects

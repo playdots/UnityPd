@@ -1,3 +1,0 @@
-# view AndroidManifest.xml #generated:7
--keep class com.weplaydots.UnityPdHelper.ACTIVITY_ENTRY_NAME { <init>(...); }
-

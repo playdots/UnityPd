@@ -1,5 +1,5 @@
-# tones
-Procedural audio generated using unity. 
+# UnityPd
+Procedural audio for Unity, generated using Pure Data
 
 Based on libpd <https://github.com/libpd/libpd> which is an embeddable version of 
 pure-data <https://github.com/pure-data/pure-data> which is a tiny audio synthesis library
@@ -15,7 +15,7 @@ but if you want to build yourself, follow these steps to replace them
 ### iOS & OSX
 
 #### libPD & Unity native audio plugin
-Open XCode project in `DotsSynthNative/NativeCode/Xcode`
+Open XCode project in `src/Xcode`
 iOS Switch target to AudioPlugin_UnityPd_iOS, Destination to Generic iOS device
 For OSX Switch target to AudioPluginDemo, Destination as default
 
@@ -27,14 +27,14 @@ since it won't be copied to `UnityPd/iOS` like normal
 #### libPD & Unity native audio plugin
 Get the JDK! <http://developer.android.com/intl/es/tools/sdk/ndk/index.html>
 
-`cd DotsSynthNative/NativeCode/Android`
+`cd src/Android`
 `ndk-build` (or `ndk-build DEBUG=true` for a debug enabled .so)
 
 #### UnityPdAndroidHelper
 Android also neeeds an additional jar to help Pd with its crazy file system
 Get Ant if you don't have it already!
 
-`cd UnityPdAndroidHelper`
+`cd src/UnityPdAndroidHelper`
 `ant jar`
 
 ### Windows

@@ -215,7 +215,7 @@ public class UnityPD : MonoBehaviour {
             using ( AndroidJavaObject jo = jc.GetStatic<AndroidJavaObject>( "currentActivity" ) ) {
                 using ( AndroidJavaClass pdHelperClass = new AndroidJavaClass( "com.weplaydots.UnityPdHelper.UnityPdHelper" ) ) {
                     pdHelperClass.CallStatic( "SetContext", jo );
-                    pdHelperClass.CallStatic( "CopyAssetsFolderToSd", PATCH_DIR, Application.persistentDataPath );
+                    pdHelperClass.CallStatic( "CopyAssetsFolderToPersistantData", PATCH_DIR, Application.persistentDataPath );
                 }
             }
         }
