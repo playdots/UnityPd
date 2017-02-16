@@ -1,4 +1,6 @@
-﻿/* DotSoundPlayer.cs
+﻿/* <copyright file="DotSoundPlayer.cs" company="Playdots, Inc.">
+ * Copyright (C) 2017 Playdots, Inc.
+ * </copyright>
  * ----------------------------
  */
 using UnityEngine;

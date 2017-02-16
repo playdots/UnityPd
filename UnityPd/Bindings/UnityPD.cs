@@ -1,6 +1,9 @@
-﻿/* UnityPD.cs
+﻿/* <copyright file="UnityPd.cs" company="Playdots, Inc.">
+ * Copyright (C) 2017 Playdots, Inc.
+ * </copyright>
  * ----------------------------
  */
+
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
