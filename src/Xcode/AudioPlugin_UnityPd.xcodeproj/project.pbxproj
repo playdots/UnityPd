@@ -74,10 +74,10 @@
 		2C1C33A41C877194008C14F5 /* AudioPlugin_UnityPd_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioPlugin_UnityPd_iOS.h; sourceTree = "<group>"; };
 		2C1C33A61C877194008C14F5 /* AudioPlugin_UnityPd_iOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioPlugin_UnityPd_iOS.m; sourceTree = "<group>"; };
 		2C4525501D58CCBE00EA2406 /* libpd.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpd.xcodeproj; path = ../../libpd/libpd.xcodeproj; sourceTree = "<group>"; };
-		3D199B5E1858F3E60063EC53 /* AudioPluginUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AudioPluginUtil.cpp; path = ../AudioPluginUtil.cpp; sourceTree = "<group>"; };
-		3D199B5F1858F3E60063EC53 /* AudioPluginUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioPluginUtil.h; path = ../AudioPluginUtil.h; sourceTree = "<group>"; };
-		3D199B6D1858F3E60063EC53 /* PluginList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginList.h; path = ../PluginList.h; sourceTree = "<group>"; };
-		3DA35E0E175F7CA000FA3842 /* AudioPluginInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioPluginInterface.h; path = ../AudioPluginInterface.h; sourceTree = "<group>"; };
+		3D199B5E1858F3E60063EC53 /* AudioPluginUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioPluginUtil.cpp; sourceTree = "<group>"; };
+		3D199B5F1858F3E60063EC53 /* AudioPluginUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPluginUtil.h; sourceTree = "<group>"; };
+		3D199B6D1858F3E60063EC53 /* PluginList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginList.h; sourceTree = "<group>"; };
+		3DA35E0E175F7CA000FA3842 /* AudioPluginInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPluginInterface.h; sourceTree = "<group>"; };
 		559A002D1B20D99100FF688C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		559A002F1B20D9C200FF688C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		559AFE891B20D12E00FF688C /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -137,10 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				2C1C338E1C8752B7008C14F5 /* Plugin_UnityPd.cpp */,
-				3D199B5E1858F3E60063EC53 /* AudioPluginUtil.cpp */,
-				3D199B5F1858F3E60063EC53 /* AudioPluginUtil.h */,
-				3D199B6D1858F3E60063EC53 /* PluginList.h */,
-				3DA35E0E175F7CA000FA3842 /* AudioPluginInterface.h */,
+				2C4261221E573A84008D45F9 /* UnityNativeAudioPlugin */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -161,6 +158,18 @@
 				2C1C33A61C877194008C14F5 /* AudioPlugin_UnityPd_iOS.m */,
 			);
 			path = AudioPlugin_UnityPd_iOS;
+			sourceTree = "<group>";
+		};
+		2C4261221E573A84008D45F9 /* UnityNativeAudioPlugin */ = {
+			isa = PBXGroup;
+			children = (
+				3D199B5E1858F3E60063EC53 /* AudioPluginUtil.cpp */,
+				3D199B5F1858F3E60063EC53 /* AudioPluginUtil.h */,
+				3D199B6D1858F3E60063EC53 /* PluginList.h */,
+				3DA35E0E175F7CA000FA3842 /* AudioPluginInterface.h */,
+			);
+			name = UnityNativeAudioPlugin;
+			path = ../UnityNativeAudioPlugin;
 			sourceTree = "<group>";
 		};
 		2C4525511D58CCBE00EA2406 /* Products */ = {

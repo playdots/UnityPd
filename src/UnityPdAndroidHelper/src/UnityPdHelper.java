@@ -1,3 +1,8 @@
+/* 
+ * UnityPdHelper.java
+ * Copyright (C) 2017 Playdots, Inc.
+ * ----------------------------
+ */
 package com.weplaydots.UnityPdHelper;
 
 import android.content.Context;

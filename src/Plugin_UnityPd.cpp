@@ -1,10 +1,8 @@
-//
-//  Plugin_libpd.cpp
-//  AudioPluginDemo
-//
-//  Created by Eddie Cameron on 3/1/16.
-//
-//
+/* 
+ * Plugin_UnityPd.cpp
+ * Copyright (C) 2017 Playdots, Inc.
+ * ----------------------------
+ */
 
 #include "AudioPluginUtil.h"
 #ifndef UNITY_WIN
