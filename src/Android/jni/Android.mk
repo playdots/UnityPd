@@ -66,7 +66,7 @@ include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := AudioPlugin_UnityPd
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/../..
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../UnityNativeAudioPlugin
 LOCAL_C_FLAGS = -DPD
 LOCAL_LDLIBS += -latomic
 LOCAL_SRC_FILES := ../../Plugin_UnityPd.cpp ../../UnityNativeAudioPlugin/AudioPluginUtil.cpp
