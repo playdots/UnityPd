@@ -1,0 +1,63 @@
+#N canvas 579 80 802 736 10;
+#X obj 79 455 *~;
+#X obj 360 365 vsl 15 128 1 10000 1 1 empty empty lp_filter 0 -9 0
+10 -262144 -1 -1 5100 1;
+#X obj 79 493 lop~;
+#X obj 49 364 expr~ $v1 > 0.5;
+#X obj 49 341 phasor~;
+#X obj 370 -33 vsl 15 128 0 300 0 1 empty empty A 0 -9 0 10 -262144
+-1 -1 400 1;
+#X obj 416 -34 vsl 15 128 0 500 0 1 empty empty D 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 468 -34 vsl 15 128 0 1 0 1 empty empty S 0 -9 0 10 -262144 -1
+-1 12700 1;
+#X obj 515 -33 vsl 15 128 0 1000 0 1 empty empty R 0 -9 0 10 -262144
+-1 -1 1800 1;
+#X obj 401 277 vline~;
+#X msg 364 236 1 \$2 \, \$4 \$3 \$2;
+#X floatatom 368 123 5 0 0 0 - - -, f 5;
+#X floatatom 416 122 5 0 0 0 - - -, f 5;
+#X floatatom 468 122 5 0 0 0 - - -, f 5;
+#X floatatom 515 123 5 0 0 0 - - -, f 5;
+#X obj 364 200 pack f f f f;
+#X floatatom 38 217 5 0 0 0 - - -, f 5;
+#X floatatom -6 99 5 0 0 0 - - -, f 5;
+#X obj 78 529 hip~;
+#X obj 407 402 vsl 15 128 10 1000 1 1 empty empty empty 0 -9 0 10 -262144
+-1 -1 5400 1;
+#X obj 58 62 t b b f;
+#X obj 469 156 +;
+#X obj 498 219 pack f f f;
+#X msg 497 252 0 \$2 \$3;
+#X obj 37 -12 r playNote;
+#X obj 70 571 dac~;
+#X connect 0 0 2 0;
+#X connect 1 0 2 1;
+#X connect 2 0 18 0;
+#X connect 3 0 0 0;
+#X connect 4 0 3 0;
+#X connect 5 0 11 0;
+#X connect 6 0 12 0;
+#X connect 7 0 13 0;
+#X connect 8 0 14 0;
+#X connect 9 0 0 1;
+#X connect 10 0 9 0;
+#X connect 11 0 15 1;
+#X connect 11 0 21 0;
+#X connect 12 0 15 2;
+#X connect 12 0 21 1;
+#X connect 13 0 15 3;
+#X connect 14 0 22 1;
+#X connect 15 0 10 0;
+#X connect 16 0 4 0;
+#X connect 18 0 25 0;
+#X connect 18 0 25 1;
+#X connect 19 0 18 1;
+#X connect 20 0 22 0;
+#X connect 20 1 15 0;
+#X connect 20 2 16 0;
+#X connect 21 0 22 2;
+#X connect 22 0 23 0;
+#X connect 23 0 9 0;
+#X connect 24 0 20 0;
+#X connect 24 0 17 0;
