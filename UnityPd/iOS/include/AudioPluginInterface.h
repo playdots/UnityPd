@@ -96,6 +96,7 @@ typedef signed long long SInt64;
 #       endif
     #endif
 #else
+#   ifndef __MACTYPES__ // on mac platforms these are already defined
 #       ifndef SInt32_defined
 #           define SInt32_defined
 typedef signed int SInt32;
@@ -104,6 +105,7 @@ typedef signed int SInt32;
 #           define UInt32_defined
 typedef unsigned int UInt32;
 #       endif
+#   endif
 #       ifndef UInt64_defined
 #           define UInt64_defined
 typedef unsigned long long UInt64;
