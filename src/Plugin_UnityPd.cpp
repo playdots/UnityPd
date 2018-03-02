@@ -31,7 +31,6 @@ namespace UnityPd
     };
     
     std::mutex mtx;
-#if !UNITY_SPU
     
     /**
      GUI CREATION
@@ -105,15 +104,6 @@ namespace UnityPd
         return UNITY_AUDIODSP_OK;
     }
     
-#endif
-    
-#if !UNITY_PS3 || UNITY_SPU
-    
-    
-#if UNITY_SPU
-    EffectData	g_EffectData __attribute__((aligned(16)));
-    extern "C"
-#endif
     UNITY_AUDIODSP_RESULT UNITY_AUDIODSP_CALLBACK ProcessCallback(UnityAudioEffectState* state, float* inbuffer, float* outbuffer, unsigned int length, int inchannels, int outchannels)
     {
 #ifndef UNITY_WIN
@@ -125,8 +115,6 @@ namespace UnityPd
 
         return UNITY_AUDIODSP_OK;
     }
-    
-#endif
     
 #ifndef UNITY_WIN
     extern "C" UNITY_AUDIODSP_EXPORT_API void UnityPd_EnableAudio() {
