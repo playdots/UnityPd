@@ -13,17 +13,19 @@ PD_SRC_FILES := \
   $(PD_ROOT)/pure-data/src/d_soundfile.c $(PD_ROOT)/pure-data/src/d_ugen.c \
   $(PD_ROOT)/pure-data/src/g_all_guis.c $(PD_ROOT)/pure-data/src/g_array.c $(PD_ROOT)/pure-data/src/g_bang.c \
   $(PD_ROOT)/pure-data/src/g_canvas.c $(PD_ROOT)/pure-data/src/g_clone.c $(PD_ROOT)/pure-data/src/g_editor.c \
+  $(PD_ROOT)/pure-data/src/g_editor_extras.c \
   $(PD_ROOT)/pure-data/src/g_graph.c $(PD_ROOT)/pure-data/src/g_guiconnect.c $(PD_ROOT)/pure-data/src/g_hdial.c \
   $(PD_ROOT)/pure-data/src/g_hslider.c $(PD_ROOT)/pure-data/src/g_io.c $(PD_ROOT)/pure-data/src/g_mycanvas.c \
   $(PD_ROOT)/pure-data/src/g_numbox.c $(PD_ROOT)/pure-data/src/g_readwrite.c \
   $(PD_ROOT)/pure-data/src/g_rtext.c $(PD_ROOT)/pure-data/src/g_scalar.c $(PD_ROOT)/pure-data/src/g_template.c \
   $(PD_ROOT)/pure-data/src/g_text.c $(PD_ROOT)/pure-data/src/g_toggle.c $(PD_ROOT)/pure-data/src/g_traversal.c \
+  $(PD_ROOT)/pure-data/src/g_undo.c \
   $(PD_ROOT)/pure-data/src/g_vdial.c $(PD_ROOT)/pure-data/src/g_vslider.c $(PD_ROOT)/pure-data/src/g_vumeter.c \
   $(PD_ROOT)/pure-data/src/m_atom.c $(PD_ROOT)/pure-data/src/m_binbuf.c $(PD_ROOT)/pure-data/src/m_class.c \
   $(PD_ROOT)/pure-data/src/m_conf.c $(PD_ROOT)/pure-data/src/m_glob.c $(PD_ROOT)/pure-data/src/m_memory.c \
   $(PD_ROOT)/pure-data/src/m_obj.c $(PD_ROOT)/pure-data/src/m_pd.c $(PD_ROOT)/pure-data/src/m_sched.c \
   $(PD_ROOT)/pure-data/src/s_audio.c $(PD_ROOT)/pure-data/src/s_audio_dummy.c \
-  $(PD_ROOT)/pure-data/src/s_file.c $(PD_ROOT)/pure-data/src/s_inter.c \
+  $(PD_ROOT)/pure-data/src/s_inter.c \
   $(PD_ROOT)/pure-data/src/s_loader.c $(PD_ROOT)/pure-data/src/s_main.c $(PD_ROOT)/pure-data/src/s_path.c \
   $(PD_ROOT)/pure-data/src/s_print.c $(PD_ROOT)/pure-data/src/s_utf8.c $(PD_ROOT)/pure-data/src/x_acoustics.c \
   $(PD_ROOT)/pure-data/src/x_arithmetic.c $(PD_ROOT)/pure-data/src/x_connective.c \
@@ -34,11 +36,11 @@ PD_SRC_FILES := \
   $(PD_ROOT)/pure-data/src/x_vexp_fun.c $(PD_ROOT)/libpd_wrapper/s_libpdmidi.c \
   $(PD_ROOT)/libpd_wrapper/x_libpdreceive.c $(PD_ROOT)/libpd_wrapper/z_libpd.c \
   $(PD_ROOT)/libpd_wrapper/util/ringbuffer.c $(PD_ROOT)/libpd_wrapper/util/z_queued.c \
-  $(PD_ROOT)/libpd_wrapper/z_hooks.c \
-  $(PD_ROOT)/libpd_wrapper/util/z_print_util.c
+  $(PD_ROOT)/libpd_wrapper/z_hooks.c $(PD_ROOT)/libpd_wrapper/util/z_print_util.c
+
 PD_C_INCLUDES := $(PD_ROOT)/pure-data/src $(PD_ROOT)/libpd_wrapper \
   $(PD_ROOT)/libpd_wrapper/util
-PD_CFLAGS := -DPD -DHAVE_UNISTD_H -DHAVE_LIBDL -DUSEAPI_DUMMY -w -Wall
+PD_CFLAGS := -DPD -DHAVE_UNISTD_H -DHAVE_LIBDL -DUSEAPI_DUMMY -w
 PD_JNI_CFLAGS := -Wno-int-to-pointer-cast -Wno-pointer-to-int-cast
 PD_LDLIBS := -ldl
 
@@ -47,6 +49,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := pd
 LOCAL_C_INCLUDES := $(PD_C_INCLUDES)
 LOCAL_CFLAGS := $(PD_CFLAGS)
+LOCAL_LDLIBS := $(PD_LDLIBS)
 LOCAL_SRC_FILES := $(PD_SRC_FILES:$(LOCAL_PATH)/%=%)
 LOCAL_EXPORT_C_INCLUDES := $(PD_C_INCLUDES)
 include $(BUILD_STATIC_LIBRARY)
@@ -54,14 +57,14 @@ include $(BUILD_STATIC_LIBRARY)
 
 # Build stdout.so
 
-include $(CLEAR_VARS)
+# include $(CLEAR_VARS)
 
-LOCAL_MODULE := stdout
-LOCAL_C_INCLUDES := $(PD_ROOT)/pure-data/src
-LOCAL_CFLAGS := -DPD
-LOCAL_SRC_FILES := $(PD_ROOT)/pure-data/extra/stdout/stdout.c
-LOCAL_SHARED_LIBRARIES := pd
-include $(BUILD_STATIC_LIBRARY)
+# LOCAL_MODULE := stdout
+# LOCAL_C_INCLUDES := $(PD_ROOT)/pure-data/src
+# LOCAL_CFLAGS := -DPD
+# LOCAL_SRC_FILES := $(PD_ROOT)/pure-data/extra/stdout/stdout.c
+# LOCAL_SHARED_LIBRARIES := pd
+# include $(BUILD_STATIC_LIBRARY)
 
 
 include $(CLEAR_VARS)
@@ -71,7 +74,7 @@ LOCAL_C_FLAGS = -DPD
 LOCAL_LDLIBS += -latomic
 LOCAL_SRC_FILES := ../../Plugin_UnityPd.cpp ../../UnityNativeAudioPlugin/AudioPluginUtil.cpp
 LOCAL_STATIC_LIBRARIES := pd
-include $(BUILD_SHARED_LIBRARY)
+include $(BUILD_STATIC_LIBRARY)
 
 all: $(DST_PATH)/$(TARGET_ARCH_ABI)
 

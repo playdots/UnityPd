@@ -1,11 +1,14 @@
 #pragma once
 
-#define UNITY_AUDIO_PLUGIN_API_VERSION 0x010400
+#define UNITY_AUDIO_PLUGIN_API_VERSION 0x010402
 
 #ifndef UNITY_PREFIX_CONFIGURE_H
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(_WIN64)
 #   define PLATFORM_WIN 1
+#   if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_APP)
+#       define PLATFORM_WINRT 1
+#   endif
 #elif defined(__MACH__) || defined(__APPLE__)
 #   define PLATFORM_OSX 1
 #elif defined(__ANDROID__)
@@ -14,7 +17,7 @@
 #   define PLATFORM_LINUX 1
 #endif
 
-#if defined(_AMD64_) || defined(__LP64__)
+#if defined(_AMD64_) || defined(__LP64__) || defined(_M_ARM64)
 #   define PLATFORM_ARCH_64 1
 #   define PLATFORM_ARCH_32 0
 #else
@@ -43,7 +46,7 @@ typedef signed char SInt8;
 #endif
 
 #if PLATFORM_ARCH_64
-#   if PLATFORM_LINUX
+#   if PLATFORM_LINUX || PLATFORM_ANDROID
 #       ifndef SInt32_defined
 #           define SInt32_defined
 typedef signed int SInt32;
@@ -96,7 +99,6 @@ typedef signed long long SInt64;
 #       endif
     #endif
 #else
-#   ifndef __MACTYPES__ // on mac platforms these are already defined
 #       ifndef SInt32_defined
 #           define SInt32_defined
 typedef signed int SInt32;
@@ -105,7 +107,6 @@ typedef signed int SInt32;
 #           define UInt32_defined
 typedef unsigned int UInt32;
 #       endif
-#   endif
 #       ifndef UInt64_defined
 #           define UInt64_defined
 typedef unsigned long long UInt64;
@@ -133,7 +134,7 @@ typedef signed long long SInt64;
 #endif
 
 // Attribute to make function be exported from a plugin
-#if PLATFORM_WIN & !PLATFORM_WINRT
+#if PLATFORM_WIN
     #define UNITY_AUDIODSP_EXPORT_API __declspec(dllexport)
 #else
     #define UNITY_AUDIODSP_EXPORT_API
@@ -143,7 +144,7 @@ typedef signed long long SInt64;
     #define UNITY_AUDIODSP_CALLBACK __stdcall
 #elif defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(_WIN64)
     #define UNITY_AUDIODSP_CALLBACK __stdcall
-#elif defined(__MACH__) || defined(__ANDROID__) || defined(__linux__) || defined(__QNX__)
+#elif defined(__MACH__) || defined(__ANDROID__) || defined(__linux__)
     #define UNITY_AUDIODSP_CALLBACK
 #else
     #define UNITY_AUDIODSP_CALLBACK
@@ -175,7 +176,8 @@ enum UnityAudioEffectDefinitionFlags
     UnityAudioEffectDefinitionFlags_IsSideChainTarget           = 1 << 0,   // Does this effect need a side chain buffer and can it be targeted by a Send?
     UnityAudioEffectDefinitionFlags_IsSpatializer               = 1 << 1,   // Should this plugin be inserted at sources and take over panning?
     UnityAudioEffectDefinitionFlags_IsAmbisonicDecoder          = 1 << 2,   // Should this plugin be used for ambisonic decoding? Added in Unity 2017.1, with UNITY_AUDIO_PLUGIN_API_VERSION 0x010400.
-    UnityAudioEffectDefinitionFlags_AppliesDistanceAttenuation  = 1 << 3    // Spatializers Only: Does this spatializer apply distance-based attenuation? Added in Unity 2017.1, with UNITY_AUDIO_PLUGIN_API_VERSION 0x010400.
+    UnityAudioEffectDefinitionFlags_AppliesDistanceAttenuation  = 1 << 3,   // Spatializers Only: Does this spatializer apply distance-based attenuation? Added in Unity 2017.1, with UNITY_AUDIO_PLUGIN_API_VERSION 0x010400.
+    UnityAudioEffectDefinitionFlags_NeedsSpatializerData        = 1 << 4    // For effects that are not spatializers or ambisonic decoders, but want access to UnityAudioSpatializerData. AudioSource-related data will be set to default values for mixer effects. Added in Unity 2018.1, with UNITY_AUDIO_PLUGIN_API_VERSION 0x010402.
 };
 
 enum UnityAudioEffectStateFlags
@@ -202,6 +204,8 @@ struct UnityAudioSpatializerData
     float                                           spread;                         // Spread parameter of the audio source (0..360 degrees)
     float                                           stereopan;                      // Stereo panning parameter of the audio source (-1 = fully left, 1 = fully right)
     UnityAudioEffect_DistanceAttenuationCallback    distanceattenuationcallback;    // The spatializer plugin may override the distance attenuation in order to influence the voice prioritization (leave this callback as NULL to use the built-in audio source attenuation curve)
+    float                                           minDistance;                    // Min distance of the audio source. This value may be helpful to determine when to apply near-field effects. Added in Unity 2018.1, with UNITY_AUDIO_PLUGIN_API_VERSION 0x010401.
+    float                                           maxDistance;                    // Max distance of the audio source. Added in Unity 2018.1, with UNITY_AUDIO_PLUGIN_API_VERSION 0x010401.
 };
 
 struct UnityAudioAmbisonicData
@@ -214,6 +218,7 @@ struct UnityAudioAmbisonicData
     float                                           stereopan;                      // Stereo panning parameter of the audio source (-1 = fully left, 1 = fully right)
     UnityAudioEffect_DistanceAttenuationCallback    distanceattenuationcallback;    // The ambisonic decoder plugin may override the distance attenuation in order to influence the voice prioritization (leave this callback as NULL to use the built-in audio source attenuation curve)
     int                                             ambisonicOutChannels;           // This tells ambisonic decoders how many output channels will actually be used.
+    float                                           volume;                         // Volume/mute of the audio source. If the the source is muted, volume is set to 0.0; otherwise, it is set to the audio source's volume. Volume is applied after the ambisonic decoder, so this is just informational. Added in Unity 2018.1, with UNITY_AUDIO_PLUGIN_API_VERSION 0x010401.
 };
 
 struct UnityAudioEffectState
